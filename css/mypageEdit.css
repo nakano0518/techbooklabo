@@ -1,0 +1,1015 @@
+@charset "utf-8";
+
+/*----------------------------------------------------------------------------
+ for Mobile and All (-767px)
+---------------------------------------------------------------------------- */
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 62.5%;
+    text-align: center;
+    color: #000;
+    font-family: 'Sawarabi Gothic',sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;   
+    width:100%;
+    height:100%;
+}
+
+
+  /* -------------------------------------------------------------------------
+ header部分のCSS設定 ここから
+-------------------------------------------------------------------------*/
+        header span.title {
+            font-size: 18px;
+            color: #ccc;
+            font-weight: bold;
+            font-family: 'Roboto Mono', monospace;
+            margin-right: 130px;
+        }
+        .subtitle {
+            font-size: 10.5px;
+            color: #ccc;
+        }
+        
+        .drawer {
+            display: flex;
+        	flex-direction: row;
+        	justify-content: stretch;
+        	flex-wrap: wrap;
+        	width: 100vw;
+        	height: 100vh;
+        	position: fixed;
+        	z-index: 9998;
+        	text-align: center;
+        	left: -100vw;
+        	top: 0;
+        }
+        
+        .drawerMenu {
+            display: flex;
+        	flex-direction: row;
+        	justify-content: stretch;
+        	flex-wrap: wrap;
+        	width: 70%;
+        	height:100vh;
+            color: #fff;
+            background-color: #fff;
+        }
+        
+        .cancelDrawerLayer {
+            width: 30%;
+        	height:100vh;
+        	background-color: #000;
+        	opacity: 0.6;
+        	/*left: -120%;*/
+        }
+        
+        .signInMenu {
+            width: 100%;
+        }
+        
+        .signOutMenu {
+            width: 100%;
+        }
+        
+        .drawerMenu p {
+            background-color: #1c2b45;
+            opacity: 0.9;
+            height:37px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+            padding-top: 15px;
+            font-size:1.4rem;
+            font-weight:bold;
+        }
+        
+        .drawerMenu ul {
+            padding-left: 0px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+        
+        .drawerMenu li {
+            list-style-type: none;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+        
+        .drawerMenu li:first-of-type {
+            margin-top: 0px;
+        }
+        
+        .drawerMenu a:hover {
+            background-color: #eee;
+        }
+        
+        .drawerMenu a:focus {
+            background-color: #ddd;
+        }
+        
+        .drawerMenu a {
+            text-decoration: none;
+            outline: none;
+            background: none;
+            color: #000;
+            font-size: 1.4rem;
+            display: block;
+            width: 100%;
+            height: 100%;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        
+        header {
+            border-bottom: 1px solid #000;
+            background-color: #1c2b45;
+            height: 50px;
+            text-align: center;
+            position:fixed;
+            top: 0;
+            z-index: 4999;
+            width: 100%;
+        }
+        
+        header img {
+            width: 25px;
+            height: 25px;
+            margin: 12px 5px; 
+        }
+        .headercenter {
+            display: inline-block;
+            vertical-align: top;
+            margin-top: 12px;
+        }
+        
+        .headercenter a {
+            text-decoration:none;
+        }
+        
+        .headerright {
+            display: inline-block;
+            vertical-align: top;
+        }
+        .fa-bars {
+            font-size:2.8rem;
+            margin-right: 20px;
+            margin-top: 12px;
+            color: #ccc;
+        }
+        .menus {
+            display: none;
+        }
+        
+        .headerright ul {
+            padding: 0;
+            display: inline;
+        }
+        
+        .headerright ul li {
+            list-style-type: none;
+            display: inline;
+        }
+        .headerright ul li a {
+            text-decoration: none;
+            color: #000;
+            border: 1px solid #000;
+            font-size: 12px;
+        }
+   	
+	.padding{
+		padding-bottom:100px;
+	}	
+ 
+        footer {
+            width: 100vw;
+            background-color: #eee;
+            margin-top: 0px;
+            position: fixed;
+	    z-index: 3333;
+            bottom:0;
+        }
+        
+        footer p {
+            text-align: center;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            color:#000;
+        }
+/* -------------------------------------------------------------------------
+ header部分のCSS設定 ここまで
+-------------------------------------------------------------------------*/  
+
+
+
+h1 {
+    font-size: 2.6rem;
+    margin-top: 100px;
+}
+
+h2.userInfoTitle {
+    font-size: 2.4rem;
+    margin: 50px 195px 0px 0px;
+}
+
+h2.goodTitle {
+    font-size: 2.4rem;
+    margin: 50px 140px 0px 0px;
+}
+
+h2.reviewTitle {
+    font-size: 2.4rem;
+    margin: 50px 135px 0px 0px;
+}
+
+
+p.updateComplete {
+    color: #127d47;
+    font-size: 1.8rem;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 2px;
+    background-color: #c6ecd9;
+    width: 350px;
+    margin: 0 auto 10px;
+}
+
+p.errorMessage {
+    color: #bc302c;
+    font-size: 1.8rem;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background-color: #f0bca8;
+    border-radius: 2px;
+    width: 350px;
+    margin: 0 auto 10px;
+}
+
+.flexContainer-Profile .flexItem-Detail p.errorText {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 0.8rem;
+    color:#bc302c;
+    text-align: left;
+    width: 150px;
+}
+
+form.userInfo img.userphoto1 {
+    margin-top: 15px;
+    border: 5px solid #fff;
+    border-radius: 150px;
+    width: 150px;
+    height: 150px;
+    position: relative;
+    right: 5px;
+}
+
+form.userInfo img.userphoto2 {
+    position: relative;
+    z-index: 5px;
+    right: 5px;
+    bottom: 165px;
+    opacity: 0.8;
+    width: 150px;
+    height: 150px;
+    border: 5px solid #fff;
+    border-radius: 150px;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.displayNone {
+    display: none;
+}
+
+p.fileSize {
+	font-size: 1.2rem;
+	color: #000;
+	margin-left: 80px;
+}
+
+p.fileSizeActive {
+	color:tomato;
+}
+
+form.userInfo .flexContainer-Profile .flexItem-PhotoName input[type="file"] {
+    display: none;
+}
+
+
+
+form.userInfo .flexContainer-Profile .flexItem-PhotoName input[name="name"]{
+    width: 90px;
+    height: 20px;
+    font-size: 1.4rem;
+    background: none;
+    border: 2px solid #000;
+    color: #000;
+    opacity: 0.6;
+    margin-left: -20px;
+}
+
+form.userInfo .flexContainer-Profile .flexItem-PhotoName label:nth-of-type(2){
+    font-size: 1.4rem;
+    position: absolute;
+    left: 20px;
+    top: 220px;
+    margin-left:c0px;
+}
+
+form .flexContainer-Profile-outline {
+    display: inline-block;
+    border: 2px solid #fff;
+    background-color: rgba(0,0,0,0.1);
+}
+
+
+form .flexContainer-Profile {
+    display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	width: 330px;
+	margin: 0 auto 15px;
+	padding: 40px 10px 30px;
+}
+
+form .flexContainer-Profile .flexItem-PhotoName{
+    width: 45%;
+    position: relative;
+}
+
+form .flexContainer-Profile .flexItem-Detail{
+    width: 45%;
+}
+
+
+
+form .flexContainer-Profile .flexItem-Detail label{
+    display: inline-block;
+    margin-top: 5px;
+}
+
+form .flexContainer-Profile .flexItem-Detail input {
+    width: 140px;
+    height: 20px;
+    background: none;
+    border: 2px solid #000;
+    color: #000;
+    opacity: 0.5;
+    font-size: 1.2rem;
+}
+
+
+form .flexContainer-Profile .flexItem-Detail span.email{
+    margin-left: -47px;
+     font-size: 1.2rem;
+}
+
+div.invisible {
+	display: none;
+}
+
+form .flexContainer-Profile .flexItem-Detail span.password{
+    margin-left: -35px;
+     font-size: 1.2rem;
+}
+
+form .flexContainer-Profile .flexItem-Detail input::placeholder{
+    font-size: 1.1rem;
+    text-indent: 0.5em;
+}
+
+form .flexContainer-Profile .flexItem-Detail span.passwordConfirm{
+    margin-left: -38px;
+font-size: 1.2rem;	 
+}
+
+form .flexContainer-Profile .flexItem-Detail input[type="checkbox"]{
+    width: 20px;
+    position: relative;
+    top: 3px;
+    left: 7px;
+    margin-right: 0px;
+}
+
+span.check{
+	font-size: 1.1rem;
+	margin-left: 10px;
+}
+
+form .flexContainer-Profile .flexItem-Detail label:nth-of-type(4){
+    position: relative;
+    right: 13px;
+}
+
+form .flexContainer-Profile .flexItem-Detail label:nth-of-type(5){
+    margin-right: 43px;
+}
+
+span.experience{
+	font-size: 1.2rem;
+	margin-left:-75px;
+}
+
+form .flexContainer-Profile .flexItem-Detail input[name="workYear"]{
+    width: 30px;
+    height:20px;
+    font-size: 1.2rem;
+    margin-left: -89px;
+}
+
+form .flexContainer-Profile .flexItem-Detail span.language{
+    font-size: 1.2rem;
+    margin-left: -71px;
+}
+
+
+form .flexContainer-Profile .flexItem-Detail span.comment{
+    font-size: 1.2rem;
+    margin-left: -68px;
+}
+
+textarea[name="comment"]{
+    width: 135px;
+    height: 100px;
+    border: 2px solid #000;
+    background: none;
+    color: #000;
+    opacity: 0.6;
+    font-size: 1.4rem;
+    font-weight: bold;
+	margin-left: 15px;
+}
+
+form input[type="submit"]{
+    margin-left: 190px;
+    margin-top: 10px;
+font-size: 1.4rem;
+font-weight: bold;    
+	width: 160px;
+	height: 40px;
+    border: 2px solid #000;
+-webkit-appearance: none;
+border-radius: 0;    
+color: #000;
+    background-color: rgba(255,255,255,1);
+}
+
+form input[type="submit"]:hover {
+    opacity: 0.4;
+}
+
+
+
+.goodBookFlexContainer img {
+    width: 150px;
+    height: 200px;
+    border: 1px solid #fff;
+    margin-bottom: 20px;
+}
+
+.reviewBookFlexContainer img {
+    width: 120px;
+    height: 170px;
+    border: 1px solid #fff;
+    margin-bottom: 20px;
+}
+
+.goodBookFlexContainer .goodBookFlexItem {
+    width: 340px;
+    margin: 10px auto;
+    background-color: rgba(0,0,0,0.1);
+}
+
+.goodBookFlexContainer .goodBookFlexItem i.fa-window-close{
+    font-size: 2.4rem;
+    margin-left: 280px;
+    margin-top: 15px;
+}
+
+.goodBookFlexContainer .goodBookFlexItem p {
+    width: 245px;
+    margin: 0 auto 15px;
+    font-size: 1.4rem;
+}
+
+.goodBookFlexContainer .empty {
+    border: none;
+    background: none;
+}
+
+.noGoodBookContainer {
+    font-size: 1.6rem;
+    border: 1px solid #fff;
+    width: 280px;
+    margin: 10px auto;
+    padding: 10px 30px;
+    background-color: rgba(0,0,0, 0.1);
+}
+.reviewBookFlexContainer {
+    display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	width: 340px;
+	margin: 0px auto 15px;
+	padding: 0px 10px;
+}
+
+.reviewBookFlexItem {
+    display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: wrap;
+	width: 340px;
+	margin: 0 auto 15px;
+	padding: 30px 10px 10px;
+	background-color:rgba(0,0,0,0.1);
+}
+
+.reviewBookFlexItemEmpty {
+    background: none;
+    border: none;   
+}
+
+.reviewBookFlexContainer i.fa-window-close{
+    font-size: 2.4rem;
+    position: relative;
+    bottom: 320px;
+    left: 60px;
+}
+
+.bookItem {
+    width: 50%;
+}
+
+.reviewItem {
+    width: 50%;
+}
+
+.reviewItem textarea {
+    background: none;
+    opacity: 0.7;
+    border: 2px solid #000;
+    color: #000;
+    margin-top: 8px;
+    width: 130px;
+    height:230px;
+    font-size:1.3rem; 
+}
+
+.reviewItem input[type="submit"] {
+    background: none;
+    border: 2px solid #000;
+    font-size: 1.4rem;
+    margin-left: 0px;
+    color: #000;
+    width: 130px;
+}
+
+.reviewBookFlexContainer .reviewBookFlexItem .bookItem p {
+    width: 120px;
+    margin: 0 auto;
+    font-size: 1.3rem;
+}
+
+.noReviewBookContainer {
+    font-size: 1.6rem;
+    border: 1px solid #fff;
+    width: 280px;
+    margin: 10px auto;
+    padding: 10px 30px;
+    background-color: rgba(0,0,0, 0.1);
+}
+
+
+
+/*------------------------------------------------------------------------------------------------------------------
+ for PC, Tablet (768px以上)
+-----------------------------------------------------------------------------------------------------------------  */
+
+@media screen and (min-width : 768px) {
+
+     /* -------------------------------------------------------------------------
+ header部分のCSS設定 ここから
+-------------------------------------------------------------------------*/
+        header {
+            text-align: center;
+        }
+        header img {
+            width: 40px;
+            height: 40px;
+            margin-top: 5px;
+        }
+        .headercenter {
+            margin-top: 5px;
+        }
+        header span.title {
+            font-size: 28px;
+	    margin-right: 250px;
+        }
+        .subtitle {
+            font-size: 14px;
+        }
+        .fa-bars {
+            display: none !important;
+        }
+        
+        .menus {
+            display: inline-block;
+        }
+        
+        .headerright ul{
+            position: relative;
+            top: 15px;
+	}
+        .headerright ul li a {
+            color: #ccc;
+            font-size: 12px;
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+        
+        .visible {
+            display: inline;
+        }
+        
+        .invisible {
+            display: none;
+        }
+        
+        .drawerMenu {
+            display: none;
+        }
+/* -------------------------------------------------------------------------
+ header部分のCSS設定 ここまで
+-------------------------------------------------------------------------*/
+
+h1 {
+    margin-top: 100px;
+    font-size: 3.6rem;
+}
+
+h2.userInfoTitle {
+    font-size: 3.4rem;
+    text-align: center;
+    margin: 50px 500px 0px 0px;
+}
+
+h2.goodTitle {
+    font-size: 3.4rem;
+    text-align: center;
+    margin: 50px 420px 0px 0px;
+}
+
+h2.reviewTitle {
+    font-size: 3.4rem;
+    text-align: center;
+    margin: 50px 420px 0px 0px;
+}
+
+p.updateComplete {
+    width: 720px;
+}
+
+p.errorMessage {
+    width: 720px;
+}
+
+.flexContainer-Profile .flexItem-Detail p.errorText {
+    margin-left: 35px;
+    font-size: 1.2rem;
+    width: 300px;
+}
+
+form .flexContainer-Profile-outline {
+    display: inline-block;
+    border: 2px solid #fff;
+    background-color: rgba(0,0,0, 0.1);
+    color: #fff;
+}
+
+
+form .flexContainer-Profile {
+    display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	width: 700px;
+	margin: 0 auto 15px;
+	padding: 50px 10px 10px;
+}
+
+
+form.userInfo img.userphoto1 {
+    margin-top: 15px;
+    border: 5px solid #fff;
+    border-radius: 200px;
+    width: 200px;
+    height: 200px;
+    position: relative;
+    right: 5px;
+}
+
+form.userInfo img.userphoto2 {
+    position: relative;
+    z-index: 5px;
+    right: 5px;
+    bottom: 215px;
+    opacity: 0.8;
+    width: 200px;
+    height: 200px;
+    border: 5px solid #aaa;
+    border-radius: 200px;
+}
+
+
+form.userInfo .flexContainer-Profile .flexItem-PhotoName input[name="name"]{
+    width: 200px;
+    height: 40px;
+    font-size: 2.4rem;
+    font-weight: bold;
+    background: none;
+    border: 2px solid #000;
+    color: #000;
+    opacity: 0.6;
+}
+
+form.userInfo .flexContainer-Profile .flexItem-PhotoName label:nth-of-type(2){
+    font-size: 2.4rem;
+    position: absolute;
+    left: 40px;
+    top: 290px;
+    color: #000;
+}
+
+
+
+form .flexContainer-Profile .flexItem-Detail label{
+    display: inline-block;
+    margin-top: 12px;
+	color: #000;
+}
+
+
+
+form .flexContainer-Profile .flexItem-Detail input {
+    width: 300px;
+    height: 40px;
+    border: 2px solid #000;
+    font-size: 2.4rem;
+    opacity: 0.6;
+}
+
+
+form .flexContainer-Profile .flexItem-Detail span.email{
+    font-size: 2.4rem;
+    margin-left: -110px;
+}
+
+form .flexContainer-Profile .flexItem-Detail span.password{
+    margin-left: -80px;
+    font-size: 2.4rem;
+}
+
+form .flexContainer-Profile .flexItem-Detail span.passwordConfirm{
+    margin-left: -80px;
+    font-size: 2.4rem;
+}
+
+form .flexContainer-Profile .flexItem-Detail input::placeholder{
+    font-size: 1.8rem;
+}
+
+form .flexContainer-Profile .flexItem-Detail input[type="checkbox"]{
+    width: 30px;
+    position: relative;
+    top: 10px;
+    left: -3px;
+    margin-right: 5px;
+}
+span.check {
+font-size: 2.4rem;
+}
+
+form .flexContainer-Profile .flexItem-Detail label:nth-of-type(4){
+    position: relative;
+    right: 25px;
+    font-size: 2.4rem;
+}
+
+form .flexContainer-Profile .flexItem-Detail label:nth-of-type(5){
+    margin-right: 85px;
+    font-size: 2.4rem;
+}
+
+span.experience{
+	font-size: 2.4rem;
+	margin-left: -175px;
+}
+
+form .flexContainer-Profile .flexItem-Detail input[name="workYear"]{
+    width: 50px;
+    height: 40px;
+    font-size: 2.4rem;
+    margin-left: -220px;
+}
+
+span.experienceYear{
+	font-size:2.4rem;
+}
+
+form .flexContainer-Profile .flexItem-Detail span.language{
+    margin-left: -155px;
+    font-size: 2.4rem;
+}
+
+form .flexContainer-Profile .flexItem-Detail span.comment {
+    font-size: 2.4rem;
+    margin-left: -155px;
+}
+
+textarea[name="comment"]{
+    width: 300px;
+    height: 150px;
+    margin-left: 30px;
+    border: 2px solid #000;
+    opacity: 0.6;
+    font-size: 2.4rem;
+}
+
+form input[type="submit"]{
+    width: 300px;
+    height: 70px;
+    font-size: 2.4rem;
+    margin-top: 30px;
+    margin-left: 350px;
+    padding: 10px 20px 10px;
+}
+
+p.fileSize {
+	font-size: 1.4rem;
+	margin-left: 380px;
+}
+
+
+form .flexContainer-Profile .flexItem-PhotoName{
+    width: 45%;
+}
+
+form .flexContainer-Profile .flexItem-Detail{
+    width: 45%;
+}
+
+
+
+
+.flexContainer-Profile .flexItem-PhotoName p{
+    margin: 30px auto 30px;
+    font-size: 2.4rem;
+}
+
+.flexContainer-Profile {
+	width: 500px;
+	margin: 0 auto 80px;
+}
+
+.flexContainer-Profile .flexItem-PhotoName{
+    width: 60%;
+}
+
+.flexContainer-Profile .flexItem-Detail{
+    width: 35%;
+}
+
+.flexContainer-Profile .flexItem-Detail p{
+    margin-top: 20px;
+    font-size: 2.4rem;
+}
+
+
+.goodBookFlexContainer {
+    display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	width: 760px;
+	margin: 0 auto;
+}
+
+.goodBookFlexContainer .goodBookFlexItem {
+    border: 2px solid #fff;
+    width: 30%;
+    margin: 5px auto;
+    padding-top: 20px;
+}
+
+.goodBookFlexContainer .empty {
+    border: none;
+}
+
+.goodBookFlexContainer .goodBookFlexItem p {
+    width: 150px;
+    margin: 0 auto;
+}
+
+.goodBookFlexContainer .goodBookFlexItem i.fa-window-close{
+    font-size: 2.4rem;
+    padding: 2px 4px;
+    margin-left: 180px;
+    margin-top: 0px;
+    background: none;
+}
+
+.noGoodBookContainer {
+    font-size: 3.2rem;
+    width: 650px;
+    margin: 10px auto;
+    padding: 10px 30px;
+}
+
+
+.reviewBookFlexContainer {
+    display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	width: 750px;
+	margin: 0 auto 15px;
+	padding: 0px 5px;
+}
+
+.reviewBookFlexItem {
+    display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: wrap;
+	width: 45%;
+	margin: 0 auto 15px;
+	border: 2px solid #fff;
+	padding-top: 60px; 
+} 
+
+.bookItem {
+    width: 45%;
+}
+
+.reviewItem {
+    width: 55%;
+}
+
+.reviewItem textarea {
+    margin-top: 20px;
+    width: 140px;
+    height:200px; 
+    border: 1px solid #000;
+    font-size: 1.4rem;
+    font-weight: bold;
+    opacity: 0.6;
+}
+
+
+.reviewBookFlexContainer i.fa-window-close{
+    font-size: 2.4rem;
+    padding: 2px 4px;
+    position: relative;
+    bottom: 360px;
+    left: 53px;
+}
+
+.reviewItem input[type="submit"] {
+    margin-left: 0px;
+    background: none;
+    border: 1px solid #000;
+    font-size: 1.2rem;
+    margin-left: 15px;
+    color: #000;
+    padding: 5px 10px;
+}
+
+.reviewBookFlexContainer .reviewBookFlexItem .bookItem p {
+    width: 150px;
+    margin: 0 auto;
+}
+
+.reviewBookFlexItemEmpty {
+    border: none;   
+}
+
+.noReviewBookContainer {
+    font-size: 3.2rem;
+    border: 2px solid #fff;
+    width: 650px;
+    margin: 10px auto 30px;
+    padding: 10px 30px;
+}
+
+}

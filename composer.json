@@ -1,0 +1,13 @@
+{
+    "name": "ec2-user/html",
+    "require": {
+        "monolog/monolog": "^2.0",
+        "vlucas/phpdotenv": "^4.1",
+        "aws/aws-sdk-php": "^3.133"
+    },
+    "autoload":{
+    	"psr-4":{
+		"Classes\\" : "classes/"	
+	}	
+    }
+}

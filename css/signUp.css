@@ -1,0 +1,369 @@
+
+html{
+    width: 100vw;
+    height: 100vh;
+    font-size: 62.5%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: #fff;
+    font-family:'Sawarabi Gothic', sans-serif;
+}
+
+body{
+	width:100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	background-color: rgba(0,0,0,0.8);
+}
+
+
+.logo a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.logo img {
+    width: 35px;
+    height: 35px;
+    position: relative;
+    top: 7px;
+}
+
+.title {
+    font-size: 2.4rem;
+    display: inline-block;
+     
+} 
+
+.signIn {
+    border: 1px solid #fff;
+    width: 250px;
+    margin: 0 auto;
+    padding: 20px 20px;
+    position: relative;
+    z-index: 3333;
+    top: 10%;
+    background-color: #1c2b45;
+    opacity: 1;
+}
+
+.signIn h1 {
+    font-size: 2.8rem;
+    margin-right: 70px;
+    margin-bottom: 0px;
+    margin-top: 30px;
+}
+
+
+.userId {
+    display: block;
+    font-size: 1.6rem;
+    margin-top: 5px;
+    margin-right: 100px;
+}
+
+input[name="newUserId"]{
+	width:170px;
+	height: 25px;
+	font-size: 1.4rem;
+}
+
+input[name="newUserId"]::placeholder {
+    font-size: 1.4rem;
+    padding-left: 0.5em;
+}
+
+.firstNG {
+    color: tomato;
+    margin-right: 10px;
+}
+
+.firstOK {
+    color: #5AFF19;
+    margin-right: 40px;
+}
+
+.userIdError_ajax {
+    color: tomato;
+    margin-right: 10px;
+}
+
+.userIdEmpty {
+    margin-right: 38px;
+}
+
+.checkInputEmpty_newUserId {
+    display: block;
+    color: tomato;
+    margin-right: 32px;
+}
+
+.green{
+    color: #5AFF19;
+    margin-right: 40px;
+}
+
+.password {
+    display: block;
+    font-size: 1.6rem;
+    margin-top: 10px;
+    margin-right: 100px;
+}
+
+input[name="password"]{
+	width: 170px;
+	height:25px;
+	font-size: 1.4rem;
+}
+
+input[name="password"]::placeholder {
+    font-size: 1.4rem;
+    padding-left: 0.5em;
+}
+
+.checkInputEmpty_password {
+    display: block;
+    color: tomato;
+    margin-right: 35px;
+}
+
+.passwordFormat {
+    color: tomato;
+    margin-right: 27px;
+}
+
+.passwordConfirm {
+    display: block;
+    font-size: 1.6rem;
+    margin-top: 10px;
+    margin-right: 60px;
+}
+
+input[name="passwordConfirm"]{
+	width:170px;
+height:25px;
+font-size: 1.4rem;
+}
+
+input[name="passwordConfirm"]::placeholder {
+    font-size: 1.4rem;
+    padding-left: 0.5em;
+}
+
+.checkInputEmpty_passwordConfirm {
+    display: block;
+    color: tomato;
+    margin-right:10px ;
+}
+.confirmPassword {
+    display: block;
+    color: tomato;
+    margin-right: 45px;
+}
+
+input[type="checkbox"] {
+    position: relative;
+    top: 2px;
+    left:10px;
+    -weblit-appearance:none;
+    border-radius:0;
+	
+}
+
+label.check {
+    display: block;
+    margin-top: 10px;
+    margin-right: 30px;
+}
+
+span.check {
+    font-size: 1.4rem;
+    margin-left: 15px;
+}
+
+input[type="submit"]{
+    -webkit-appearance: none;
+    border-radius: 0;
+    width: 180px;
+   padding: 5px 10px; 
+    margin-top: 20px;
+    background: none;
+    outline: none;
+    border: 1px solid #444;
+    color: #fff;
+    background-color: #333;
+    margin-bottom: 15px;
+font-size: 1.6rem; 
+}
+
+
+
+/*------------------------------------------------------------------------------------------------------------------
+ for Tablet, PC (+768px)
+-----------------------------------------------------------------------------------------------------------------  */
+
+@media screen and (min-width : 768px) {
+
+.logo img {
+    width: 50px;
+    height: 50px;
+    
+}
+
+.signIn {
+    border: 1px solid #fff;
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px 20px;
+    position: relative;
+    z-index: 3333;
+    top: 5%;
+    background-color: #1c2b45;
+    opacity: 1;
+}
+
+.title {
+    font-size: 3.6rem;
+    margin-right: 55px;
+} 
+
+
+.signIn h1 {
+    font-size: 2.8rem;
+    margin-right: 120px;
+}
+
+
+.userId {
+    font-size: 1.8rem;
+    margin-top: 10px;
+    margin-right: 140px;
+}
+
+input[name="newUserId"]{
+    width: 230px;
+    height: 30px;
+}
+
+input[name="newUserId"]::placeholder {
+    font-size: 1.5rem;
+}
+
+.userIdError_ajax {
+    color: tomato;
+    font-size: 1.4rem;
+    margin-right: -30px;
+}
+
+.userIdEmpty {
+    margin-right: 16px;
+}
+
+.checkInputEmpty_newUserId {
+    font-size: 1.4rem;
+    margin-right: 10px;
+}
+
+.green{
+    color: #5AFF19;
+    font-size: 1.4rem;
+    margin-right: 25px;
+}
+
+.firstNG {
+    color: tomato;
+    font-size: 1.4rem;
+    margin-right: -30px;
+}
+
+.firstOK {
+    color: #5AFF19;
+    font-size: 1.4rem;
+    margin-right: 25px;
+}
+
+
+
+.password {
+    font-size: 1.8rem;
+    margin-top: 10px;
+    margin-right: 140px;
+}
+
+input[name="password"]{
+    width: 230px;
+    height: 30px;
+}
+
+input[name="password"]::placeholder {
+    font-size: 1.5rem;
+}
+
+.checkInputEmpty_password {
+    display: block;
+    color: tomato;
+    font-size: 1.4rem;
+    margin-right: 10px;
+}
+
+.passwordFormat {
+    color: tomato;
+    font-size: 1.4rem;
+    margin-right: -5px;
+}
+
+.passwordConfirm {
+    font-size: 1.8rem;
+    margin-top: 10px;
+    margin-right: 80px;
+}
+
+input[name="passwordConfirm"]{
+    width: 230px;
+    height: 30px;
+}
+
+input[name="passwordConfirm"]::placeholder {
+    font-size: 1.5rem;
+}
+
+.passwordConfirmError {
+    color: tomato;
+    margin-right: 30px;
+    font-size: 1.4rem;
+}
+
+.checkInputEmpty_passwordConfirm {
+    font-size: 1.4rem;
+    margin-right: -32px ;
+}
+.confirmPassword {
+    font-size: 1.4rem;
+    margin-right: 25px;
+}
+
+label.check {
+    margin-right: 70px;
+}
+
+span.check {
+    font-size: 1.4rem;
+}
+
+input[type="submit"]{
+    width: 240px;
+    height: 40px;
+    margin-top: 25px;
+    font-size: 1.8rem;
+}
+  
+}
+
+@media screen and (min-width : 1024px) {
+
+.signIn {
+	width: 35%;
+}
+}

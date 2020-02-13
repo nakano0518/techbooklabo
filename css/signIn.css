@@ -1,0 +1,308 @@
+
+
+
+html{
+    width: 100vw;
+    height: 100vh;
+    font-size: 62.5%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: #fff;
+    font-family: 'Sawarabi Gothic', sans-serif;
+}
+
+body{
+    	width:100%;
+	height:100%;
+	margin:0;
+	padding:0;
+    	background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+a.goHome {
+    text-decoration: none;
+    color: #fff;
+}
+
+.logo img {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    top: 7px;
+}
+
+.title {
+    font-size: 2.4rem;
+    display: inline-block;
+    margin-right: 10px;
+    font-family: 'Roboto Mono', monospace;
+} 
+
+.signIn {
+    border: 1px solid #fff;
+    width: 250px;
+    margin: 0 auto;
+    padding: 20px 20px;
+    position: relative;
+    z-index: 3333;
+    top: 3%;
+    background-color: #1c2b45;
+    opacity: 1;
+}
+
+.signIn h1 {
+    font-size: 2.8rem;
+    margin-right: 70px;
+    margin-bottom: 0px;
+    margin-top: 30px;
+}
+
+p.userIdPasswordError {
+    color: tomato;
+    font-size: 1.2rem;
+    margin: 0 0 0 25px;   
+}
+
+p.dbError {
+    color: tomato;
+    font-size: 1.2rem;
+    margin: 0 0 0 48px;   
+}
+
+
+.userId {
+    display: block;
+    font-size: 1.6rem;
+    margin-top: 5px;
+    margin-right: 100px;
+}
+
+input[name="userId"] {
+	width: 170px;
+	height: 25px;
+	font-size: 1.4rem;
+}
+
+input[name="userId"]::placeholder {
+    font-size: 1.4rem;
+    padding-left: 0.5em;
+}
+
+p.userIdEmpty{
+    color: tomato;
+    font-size: 1.6rem;
+    margin: 0 45px 0 0;
+}
+
+.password {
+    display: block;
+    font-size: 1.6rem;
+    margin-top: 10px;
+    margin-right: 100px;
+}
+
+input[name="password"]{
+	width:170px;
+height:25px;
+font-size:1.4rem;
+}
+
+input[name="password"]::placeholder {
+    font-size: 1.4rem;
+    padding-left: 0.5em;
+}
+
+p.passwordEmpty{
+    color: tomato;
+    font-size: 1.2rem;
+    margin: 0 45px 0 0;
+}
+
+input[type="submit"]{
+    width: 180px;
+    padding: 5px 10px;
+    font-size: 1.6rem;
+    margin-top: 20px;
+    background: none;
+    -webkit-appearance: none;
+    border-radius: 0;
+    border: 1px solid #444;
+    outline: none;
+    color: #fff;
+    background-color: #333;
+}
+
+a.testLogin {
+text-decoration: none;   
+position: relative;
+ border-radius: 0;
+    color: #000;
+background-color:#ffd877;
+display: inline-block;
+width:160px;
+padding: 5px 10px;   
+font-size:1.4rem;
+}
+
+.forget a{
+    color: #fff;
+}
+
+.snsLogin {
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    margin: 10px auto;
+    width: 180px;
+}
+
+.snsLogin ul {
+    padding-left: 0px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.snsLogin ul li {
+    list-style-type: none;
+    display: inline;
+    margin-right: 20px;
+}
+
+.snsLogin ul li:last-of-type {
+    margin-right: 0px;
+}
+.fab {
+    color: #fff;
+    font-size: 3.2rem;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    padding: 8px;
+}
+
+.fab:hover {
+    color: #aaa;
+}
+
+.fab:focus {
+    color: #999;
+}
+.signUpForm {
+	margin-top: 20px;
+}
+
+.signUpForm a {
+    text-decoration: none;
+    color: #fff;
+    border-bottom: 1px solid #fff;
+}
+
+/*------------------------------------------------------------------------------------------------------------------
+ for Tablet, PC (+768px)
+-----------------------------------------------------------------------------------------------------------------  */
+
+@media screen and (min-width : 768px) {
+
+.logo img {
+    width: 50px;
+    height: 50px;
+    
+}
+
+.signIn {
+    border: 1px solid #fff;
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px 20px;
+    position: relative;
+    z-index: 3333;
+    top: 5%;
+    background-color: #1c2b45;
+    opacity: 1;
+}
+
+.title {
+    font-size: 3.6rem;
+} 
+
+
+.signIn h1 {
+    font-size: 2.8rem;
+    margin-right: 120px;
+}
+
+
+.userId {
+    font-size: 1.8rem;
+    margin-top: 10px;
+    margin-right: 140px;
+}
+
+input[name="userId"]{
+    width: 230px;
+    height: 30px;
+}
+
+input[name="userId"]::placeholder {
+    font-size: 1.5rem;
+}
+
+.password {
+    font-size: 1.8rem;
+    margin-top: 10px;
+    margin-right: 140px;
+}
+
+input[name="password"]{
+    width: 230px;
+    height: 30px;
+}
+
+input[name="password"]::placeholder {
+    font-size: 1.5rem;
+}
+
+input[type="submit"]{
+    width: 240px;
+    height: 40px;
+    margin-top: 25px;
+    font-size: 1.8rem;
+}
+
+button.testLogin{
+	width:240px;
+	height: 40px;
+	font-size: 1.6rem;
+	font-weight: bold;
+}
+
+.forget a{
+    font-size: 1.6rem;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.snsLogin {
+    width: 250px;
+}
+
+.snsLogin p {
+    font-size: 1.6rem;
+}
+
+.fab {
+    font-size: 4.2rem;
+}
+
+.signUpForm a {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+}   
+}
+
+
+@media screen and (min-width : 1024px) {
+.signIn{
+	width: 30%;
+}
+}

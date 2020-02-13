@@ -1,0 +1,510 @@
+/*----------------------------------------------------------------------------
+ for Mobile and All (-767px)
+---------------------------------------------------------------------------- */
+html{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 62.5%;
+    font-family: 'Sawarabi Gothic', sans-serif;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+/* -------------------------------------------------------------------------
+ header部分のCSS設定 ここから
+-------------------------------------------------------------------------*/
+        header span.title {
+            font-size: 18px;
+            color: #ccc;
+            font-weight: bold;
+	    font-family: 'Roboto Mono', monospace;
+            margin-right: 130px;
+	}
+        .subtitle {
+            font-size: 10.5px;
+            color: #ccc;
+        }
+        
+        .drawer {
+            	display: flex;
+        	flex-direction: row;
+        	justify-content: stretch;
+        	flex-wrap: wrap;
+        	width: 100vw;
+        	height: 100vh;
+        	position: fixed;
+        	z-index: 9998;
+        	text-align: center;
+        	left: -100vw;
+        	top: 0;
+        }
+        
+        .drawerMenu {
+                display: flex;
+        	flex-direction: row;
+        	justify-content: stretch;
+        	flex-wrap: wrap;
+        	width: 70%;
+        	height:100vh;
+                color: #fff;
+                background-color: #fff;
+        }
+        
+        .cancelDrawerLayer {
+            width: 30%;
+        	height:100vh;
+        	background-color: #000;
+        	opacity: 0.6;
+        	/*left: -120%;*/
+        }
+        
+        .signInMenu {
+            width: 100%;
+            font-size:1.4rem;
+	}
+        
+        .signOutMenu {
+            width: 100%;
+        }
+        
+        .drawerMenu p {
+            background-color: #1c2b45;
+            opacity: 0.9;
+            margin-top: 0px;
+            margin-bottom: 0px;
+            padding-top: 15px;
+	    padding-bottom:15px;
+	    font-weight: bold;
+	    font-size:1.4rem;
+	}
+        
+        .drawerMenu ul {
+            padding-left: 0px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+        
+        .drawerMenu li {
+            list-style-type: none;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+        
+        .drawerMenu li:first-of-type {
+            margin-top: 0px;
+        }
+        
+        .drawerMenu a:hover {
+            background-color: #eee;
+        }
+        
+        .drawerMenu a:focus {
+            background-color: #ddd;
+        }
+        
+        .drawerMenu a {
+            text-decoration: none;
+            outline: none;
+            background: none;
+            color: #000;
+            font-size: 1.4rem;
+	    font-weight: bold;
+            display: block;
+            width: 100%;
+            height: 100%;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        
+        header {
+            border-bottom: 1px solid #000;
+            background-color: #1c2b45;
+            height: 50px;
+            text-align: center;
+            position:fixed;
+            top: 0;
+            z-index: 4999;
+            width: 100%;
+        }
+        
+        header img {
+            width: 25px;
+            height: 25px;
+            margin: 12px 5px; 
+        }
+        .headercenter {
+            display: inline-block;
+            vertical-align: top;
+            margin-top: 12px;
+        }
+        
+        .headercenter a {
+            text-decoration: none;
+        }
+        
+        .headerright {
+            display: inline-block;
+            vertical-align: top;
+        }
+	
+        .fa-bars {
+            font-size: 2.8rem;
+	    margin-right: 20px;
+	    margin-top: 12px;
+            color: #ccc;
+        }
+        .menus {
+            display: none;
+        }
+        
+        .headerright ul {
+            padding: 0;
+            display: inline;
+        }
+        
+        .headerright ul li {
+            list-style-type: none;
+            display: inline;
+        }
+        .headerright ul li a {
+            text-decoration: none;
+            color: #000;
+            border: 1px solid #000;
+            font-size: 12px;
+        }
+    
+        footer {
+            width: 100vw;
+            background-color: #eee;
+            margin-top: 0px;
+	    position: fixed;
+	    z-index: 3333;
+	    bottom: 0;
+        }
+        
+        footer p {
+            text-align: center;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+/* -------------------------------------------------------------------------
+ header部分のCSS設定 ここまで
+-------------------------------------------------------------------------*/    
+    /*main部分--検索フォームなどのCSS設定*/
+        main {
+            position: relative;
+            top: 160px;
+	    padding-bottom: 80px;
+	}
+        .controlSection {
+            position: fixed;
+            top:50px;
+            background-color:#fff;
+            height: 70px;
+            width: 100%;
+            text-align: center;
+            border:1px solid #aaa;
+        }
+        
+        div.component {
+            height: 100%;
+            display: inline-block;
+            
+        }
+        #searchForm {
+            position:relative;
+        }
+        
+        #searchForm input {
+            width:200px;
+            height:40px;
+            padding:0 10px; 
+            position:relative; 
+            left: -25px;
+            top:6px;
+            border-radius:2px;
+            background-color: #eee;
+	    font-size: 1.4rem;
+        }
+        
+        #searchForm input:focus {
+            outline: 0;
+        }
+	
+	#searchForm input::placeholder {
+	    font-size: 1.2rem;
+	    font-weight: bold;
+	}
+        
+        #searchForm button {
+            font-size:20px;
+            height:50px;
+            background:none;
+            color:#666;
+            border:none;
+            display: inline;
+            position:relative;
+            top:9px;
+            left:-75px;
+            z-index:1;
+        }
+        #searchForm button:hover {
+            opacity: 0.6;
+            cursor:pointer;
+        }
+        #searchForm button:focus {
+            outline: 0;
+            opacity: 0.3;
+        }
+        .sort {
+            font-size: 20px;
+            padding:3px 10px 6px;
+            background: none;
+            border: none;
+	    border-radius:50px;
+            display: inline;
+            position:relative;
+            top:-37px;
+            left:90px;
+        }
+
+        
+        .sort:hover {
+            opacity: 0.6;
+            cursor: pointer;
+            border: 1px solid #000;
+            border-radius: 100px;
+            
+        }
+        .fa-sort-down {
+            font-size: 24px;
+        }
+        .sortDescription {
+            display: none;
+        }
+        .sort:focus {
+            outline: 0;
+        }
+	/*並べ替えボタンをクリックした際の並べ替え項目のリスト*/
+        .sortForm {
+            	display: flex;
+        	flex-direction: row;
+        	justify-content: center;
+        	flex-wrap: wrap;
+        	width: 100%;
+        	position: fixed;
+        	left:0;
+		top: 120px;
+        	z-index: 19999;
+		background-color: #fff;
+		border: 1px solid #aaa;
+	}
+        
+        .tag {
+            display: none;
+        }
+        
+        .sortForm button {
+            width:49.5%;
+	    font-size: 1.4rem;
+            background: none;
+	    padding: 5px;
+	    margin:0;
+	    border: 1px solid #aaa;
+	}
+	
+	.sortForm button:nth-of-type(odd){
+	    border-right:none;
+	}
+
+	.sortForm button:nth-of-type(even){
+	   border-left: 2px solid #aaa;
+	}
+        
+        .sortForm button:hover {
+            background-color: #eee;
+        }
+        
+        .bookInsert {
+            font-size: 20px;
+            padding:5px 8px;
+            background: none;
+            border: none;
+            display: inline;
+            position:relative;
+            top:-75px;
+            left:140px;
+        }
+        .bookInsert:hover {
+            opacity: 0.6;
+            cursor: pointer;
+            border: 1px solid #000;
+            border-radius: 20000px;
+        }
+        .bookInsertDescription {
+            display: none;
+        }
+        .bookInsert:focus {
+            outline: 0;
+            opacity: 0.3;
+        }
+
+        .book {
+            text-align: center;
+        }
+        .book a {
+            display: inline-block;
+            margin-bottom: 40px;
+            text-decoration: none;
+            width: 200px;
+        }
+        .book img {
+            text-align: center;
+        }
+        .book p {
+            font-size: 1.4rem;
+	    font-weight: bold;
+            color: #000;
+            display: inline;
+            text-align: center;
+        }
+        .page {
+            height: 50px;
+            text-align: center;
+        }
+        .page span{
+            display: inline-block;
+            margin:5px;
+        }
+        .page a {
+            display: inline-block;
+            margin: 5px;
+        }
+        
+/*------------------------------------------------------------------------------------------------------------------
+ for Tablet (+768px, -1024px)
+-----------------------------------------------------------------------------------------------------------------  */
+
+@media screen and (min-width : 768px) {
+/* -------------------------------------------------------------------------
+ header部分のCSS設定 ここから
+-------------------------------------------------------------------------*/
+        header {
+            text-align: center;
+        }
+        header img {
+            width: 40px;
+            height: 40px;
+            margin-top: 5px;
+        }
+        header span.title {
+            font-size: 28px;
+	    margin-right: 150px;
+	    font-family: 'Roboto Mono', monospace;
+        }
+        .subtitle {
+            font-size: 14px;
+        }
+        .fa-bars {
+            display: none !important;
+        }
+        
+        .menus {
+            display: inline-block;
+            position: relative;
+	    left:50%;
+        }
+       .headercenter{ 
+	    margin-top: 5px;
+	} 
+        .headerright ul{
+            position: relative;
+            right: 80px;
+	    top: 18px;
+        }
+
+	.headerright ul li {
+	    margin-right: 5px;
+	}
+	
+	.headerright ul li:nth-of-type(3){
+	    margin-right: 10px;
+	}
+
+        .headerright ul li a {
+            color: #ccc;
+            font-size: 12px;
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+        
+        .visible {
+            display: inline;
+        }
+        
+        .invisible {
+            display: none;
+        }
+        
+        .drawerMenu {
+            display: none;
+        }
+/* -------------------------------------------------------------------------
+ header部分のCSS設定 ここまで
+-------------------------------------------------------------------------*/
+.sort{
+	left: 120px;
+	top: -35px;
+}
+
+.bookInsert{
+	left: 190px;
+	top: -66px;
+}
+.flexContainer{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: wrap;
+	max-width:660px;
+	margin: 0 auto;
+}
+
+.book{
+    margin-top: 15px;
+	width: 200px;
+}
+
+}
+
+/*------------------------------------------------------------------------------------------------------------------
+ for PC (+1024px)
+-----------------------------------------------------------------------------------------------------------------  */
+
+@media screen and (min-width : 1024px) {
+
+header span.title {
+	margin-right: 400px;
+}
+
+.flexContainer{
+	display: flex;
+	flex-direction: row;
+	justify-content: start;
+	flex-wrap: wrap;
+	max-width: 890px;
+}
+
+.book{
+    margin-top: 15px;
+	width: 200px;
+}
+}
+
+

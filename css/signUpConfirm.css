@@ -1,0 +1,157 @@
+
+html, body {
+    width: 100vw;
+    height: 100vh;
+    font-size: 62.5%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: #fff;
+}
+
+.signInWhole {
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+}
+
+
+.logo img {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    top: 7px;
+    margin-right: 10px;
+}
+
+.title {
+    font-size: 2.8rem;
+    display: inline-block;
+    margin-right: 10px;
+} 
+
+.signIn {
+    border: 1px solid #fff;
+    width: 60%;
+    margin: 0 auto;
+    padding: 40px 50px;
+    position: relative;
+    z-index: 3333;
+    top: 10%;
+    background-color: #1c2b45;
+    opacity: 1;
+}
+
+.signIn h1 {
+    font-size: 2.0rem;
+    text-align: center;
+}
+
+.contents {
+    border: 1px solid #fff;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.userId {
+    display: block;
+    font-size: 1.6rem;
+    text-align: center;
+    margin-right: 30px;
+}
+
+
+.password {
+    display: block;
+    font-size: 1.6rem;
+    margin-top: 10px;
+    text-align: center;
+}
+
+
+.link {
+    margin-top: 30px;
+}
+
+.link a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.8rem;
+    border: 1px solid #fff;
+    margin-right: 10px;
+    margin-left: 10px;
+    padding: 5px 10px;
+}
+
+.link a:hover {
+    background-color: #aaa;
+}
+
+
+/*------------------------------------------------------------------------------------------------------------------
+ for Tablet, PC (+768px)
+-----------------------------------------------------------------------------------------------------------------  */
+
+@media screen and (min-width : 768px) {
+
+
+.signIn {
+    width: 400px;
+}
+
+
+.title {
+    font-size: 3.6rem;
+    display: inline-block;
+    margin-right: 10px;
+} 
+
+.signIn h1 {
+    font-size: 2.8rem;
+}
+
+.contents {
+    width: 350px;
+    margin: 0 auto;
+    border: 1px solid #fff;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.userId {
+    display: block;
+    font-size: 2.0rem;
+    text-align: center;
+    margin-right: 60px;
+}
+
+
+.password {
+    display: block;
+    font-size: 2.0rem;
+    margin-top: 10px;
+    text-align: center;
+    margin-right: 20px;
+}
+
+
+.link {
+    margin-top: 30px;
+}
+
+.link a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.8rem;
+    border: 1px solid #fff;
+    margin-right: 10px;
+    margin-left: 10px;
+    padding: 5px 10px;
+}
+
+.link a:hover {
+    background-color: #aaa;
+}   
+}
+

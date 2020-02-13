@@ -1,0 +1,716 @@
+@charset "utf-8";
+/*----------------------------------------------------------------------------
+ for Mobile and All (-767px)
+---------------------------------------------------------------------------- */
+
+html {
+    margin: 0;
+    padding: 0;
+    font-size: 62.5%;
+    text-align: center;
+    color: #000;
+    width: 100%;
+    height: 100%;
+    font-family: 'Sawarabi Gothic', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;  
+    width: 100%;
+    height: 100%;
+}
+
+
+ /* -------------------------------------------------------------------------
+ header部分のCSS設定 ここから
+-------------------------------------------------------------------------*/
+         header span.title {
+            font-size: 18px;
+            color: #ccc;
+            font-weight: bold;
+            font-family: 'Roboto Mono', monospace;
+            margin-right: 130px;
+        }
+        .subtitle {
+            font-size: 10.5px;
+            color: #ccc;
+        }
+        
+        .drawer {
+            display: flex;
+        	flex-direction: row;
+        	justify-content: stretch;
+        	flex-wrap: wrap;
+        	width: 100vw;
+        	height: 100vh;
+        	position: fixed;
+        	z-index: 9998;
+        	text-align: center;
+        	left: -100vw;
+        	top: 0;
+        }
+        
+        .drawerMenu {
+            display: flex;
+        	flex-direction: row;
+        	justify-content: stretch;
+        	flex-wrap: wrap;
+        	width: 70%;
+        	height:100vh;
+            color: #fff;
+            background-color: #fff;
+        }
+        
+        .cancelDrawerLayer {
+            width: 30%;
+        	height:100vh;
+        	background-color: #000;
+        	opacity: 0.6;
+        	/*left: -120%;*/
+        }
+        
+        .signInMenu {
+            width: 100%;
+            font-size: 1.4rem;
+        }
+        
+        .signOutMenu {
+            width: 100%;
+        }
+        
+        .drawerMenu p {
+            background-color: #1c2b45;
+            opacity: 0.9;
+            height:37px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+            padding-top: 15px;
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+        
+        .drawerMenu ul {
+            padding-left: 0px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+        
+        .drawerMenu li {
+            list-style-type: none;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+        
+        .drawerMenu li:first-of-type {
+            margin-top: 0px;
+        }
+        
+        .drawerMenu a:hover {
+            background-color: #eee;
+        }
+        
+        .drawerMenu a:focus {
+            background-color: #ddd;
+        }
+        
+        .drawerMenu a {
+            text-decoration: none;
+            outline: none;
+            background: none;
+            color: #000;
+            font-size: 1.4rem;
+            font-weight: bold;
+            display: block;
+            width: 100%;
+            height: 100%;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        
+        header {
+            border-bottom: 1px solid #000;
+            background-color: #1c2b45;
+            height: 50px;
+            text-align: center;
+            position:fixed;
+            top: 0;
+            z-index: 4999;
+            width: 100%;
+        }
+        
+        header img {
+            width: 25px;
+            height: 25px;
+            margin: 12px 5px; 
+        }
+        
+        .headercenter {
+            display: inline-block;
+            vertical-align: top;
+            margin-top: 12px;
+        }
+        
+        .headercenter a {
+            text-decoration: none;
+        }
+        
+        .headerright {
+            display: inline-block;
+            vertical-align: top;
+        }
+        .fa-bars {
+            font-size: 2.8rem;
+            margin-right: 20px;
+            margin-top: 12px;
+            color: #ccc;
+        }
+        .menus {
+            display: none;
+        }
+        
+        .headerright ul {
+            padding: 0;
+            display: inline;
+        }
+        
+        .headerright ul li {
+            list-style-type: none;
+            display: inline;
+        }
+        .headerright ul li a {
+            text-decoration: none;
+            color: #000;
+            border: 1px solid #000;
+            font-size: 12px;
+        }
+    
+        footer {
+            width: 100vw;
+            background-color: #eee;
+            margin-top: 0px;
+            position: fixed;
+            z-index: 3333;
+            bottom:0;
+        }
+        
+        footer p {
+            text-align: center;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            color: #000;
+        }
+
+/* -------------------------------------------------------------------------
+ header部分のCSS設定 ここまで
+-------------------------------------------------------------------------*/  
+
+
+h1 {
+    font-size: 2.6rem;
+    margin-top: 100px;
+}
+
+.editButton {
+    text-decoration: none;
+    color: #000;
+    font-size: 1.4rem;
+    font-weight: bold;
+    border: 2px solid #000;
+    padding: 5px 10px;
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: 180px;
+    
+}
+
+.editButton:hover {
+    opacity: 0.6;
+}
+
+h2.userInfoTitle {
+    font-size: 2.4rem;
+    margin: 50px 195px 0px 0px;
+}
+
+h2.goodTitle {
+    font-size: 2.4rem;
+    margin: 50px 140px 0px 0px;
+}
+
+h2.reviewTitle {
+    font-size: 2.4rem;
+    margin: 50px 135px 0px 0px;
+}
+
+.flexItem-PhotoName img{
+    border-radius: 150px;
+    width: 150px;
+    height: 150px;
+}
+
+
+.flexContainer-Profile .flexItem-PhotoName .userName{
+    width: 130px;
+    font-size: 1.6rem;
+    font-weight: bold;
+    background: none;
+    color: #000;
+    margin-left: 15px;
+    word-break: break-word;
+}
+
+
+.flexContainer-Profile-outline {
+    display: inline-block;
+    border: 2px solid #fff;
+    background-color: rgba(0,0,0,0.1);
+}
+
+
+.flexContainer-Profile {
+    display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	width: 330px;
+	margin: 10px auto 15px;
+	padding: 30px 10px 30px;
+}
+
+.flexContainer-Profile .flexItem-PhotoName{
+    width: 45%;
+    position: relative;
+}
+
+.flexContainer-Profile .flexItem-Detail{
+    width: 45%;
+}
+
+
+.flexContainer-Profile .flexItem-Detail {
+    display: inline-block;
+    margin-top: 5px;
+}
+
+p.prof span {
+    font-weight: bold;
+    font-size:1.4rem;
+}
+
+.flexContainer-Profile .flexItem-Detail p {
+    width: 140px;
+    margin-left: 10px;
+    background: none;
+    color: #000;
+}
+
+.flexContainer-Profile .flexItem-Detail p.workYear{
+    text-align: left;
+    font-size: 1.4rem;
+    word-break: break-word;
+}
+
+.flexContainer-Profile .flexItem-Detail p.language{
+    text-align: left;
+    font-size: 1.4rem;
+    word-break: break-word;
+}
+
+
+.flexContainer-Profile .flexItem-Detail p.comment{
+    text-align: left;
+    font-size: 1.4rem;
+    word-break: break-word;
+}
+
+.goodBookFlexContainer .goodBookFlexItem {
+    padding-top: 20px;
+}
+
+.goodBookFlexContainer img {
+    width: 150px;
+    height: 200px;
+    border: 1px solid #000;
+    margin-bottom: 20px;
+}
+
+.reviewBookFlexContainer img {
+    width: 120px;
+    height: 170px;
+    border: 1px solid #000;
+    margin-bottom: 20px;
+}
+
+.goodBookFlexContainer .goodBookFlexItem {
+    border: 2px solid #fff;
+    background-color: rgba(0,0,0,0.1);
+    width: 340px;
+    margin: 10px auto;
+}
+
+
+.goodBookFlexContainer .goodBookFlexItem p {
+    width: 260px;
+    font-size:1.3rem;
+    margin: 0 auto 5px;
+    
+}
+
+.goodBookFlexContainer .empty {
+    border: none;
+    background: none;
+}
+
+.noGoodBookContainer {
+    font-size: 1.6rem;
+    border: 1px solid #fff;
+    width: 280px;
+    margin: 10px auto;
+    padding: 10px 30px;
+    background-color: rgba(0,0,0, 0.1);
+}
+.reviewBookFlexContainer {
+    display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	width: 340px;
+	margin: 0px auto 15px;
+	padding: 0px 10px;
+}
+
+.reviewBookFlexItem {
+    display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: wrap;
+	width: 340px;
+	margin: 0 auto 15px;
+	border: 2px solid #fff;
+	background-color: rgba(0,0,0,0.1);
+	padding: 30px 10px 10px;
+}
+
+.reviewBookFlexItemEmpty {
+    border: none; 
+    background: none;  
+}
+
+
+.bookItem {
+    width: 50%;
+}
+
+.reviewItem {
+    width: 50%;
+}
+
+.textarea {
+    background: none;
+    opacity: 0.7;
+    color: #000;
+    text-align: left;
+    margin-top: 8px;
+    margin-left: 10px;
+    font-size: 1.3rem;
+    width: 130px;
+    word-break: break-word;
+}
+
+
+.reviewBookFlexContainer .reviewBookFlexItem .bookItem p {
+    width: 130px;
+    font-size: 1.3rem;
+    margin: 0 auto 10px;
+}
+
+.noReviewBookContainer {
+    font-size: 1.6rem;
+    border: 1px solid #fff;
+    width: 280px;
+    margin: 10px auto;
+    padding: 10px 30px;
+    background-color: rgba(0,0,0, 0.1);
+}
+
+.padding {
+	padding-bottom: 100px;
+}
+
+/*------------------------------------------------------------------------------------------------------------------
+ for PC, Tablet (768px以上)
+-----------------------------------------------------------------------------------------------------------------  */
+
+@media screen and (min-width : 768px) {
+  /* -------------------------------------------------------------------------
+ header部分のCSS設定 ここから
+-------------------------------------------------------------------------*/
+        header {
+            text-align: center;
+        }
+        header img {
+            width: 40px;
+            height: 40px;
+            margin-top: 5px;
+        }
+        .headercenter {
+            margin-top: 5px;
+        }
+        header span.title {
+            font-size: 28px;
+	margin-right: 250px;
+        }
+        .subtitle {
+            font-size: 14px;
+        }
+        .fa-bars {
+            display: none !important;
+        }
+        
+        .menus {
+            display: inline-block;
+        }
+        
+        .headerright ul{
+            position: relative;
+            top: 15px;
+	}
+        .headerright ul li a {
+            color: #ccc;
+            font-size: 12px;
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+        
+        .visible {
+            display: inline;
+        }
+        
+        .invisible {
+            display: none;
+        }
+        
+        .drawerMenu {
+            display: none;
+        }
+/* -------------------------------------------------------------------------
+ header部分のCSS設定 ここまで
+-------------------------------------------------------------------------*/
+   
+
+h1 {
+    margin-top: 120px;
+    font-size: 3.6rem;
+}
+
+.editButton {
+    text-decoration: none;
+    color: #000;
+    font-size: 2.4rem;
+    font-weight: bold;
+    border: 2px solid #000;
+    padding: 5px 10px;
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: 450px;
+    
+}
+
+.editButton:hover {
+    opacity: 0.6;
+}
+
+
+h2.userInfoTitle {
+    font-size: 3.4rem;
+    text-align: center;
+    margin: 50px 530px 0px 0px;
+}
+
+h2.goodTitle {
+    font-size: 3.4rem;
+    text-align: center;
+    margin: 50px 450px 0px 0px;
+}
+
+h2.reviewTitle {
+    font-size: 3.4rem;
+    text-align: center;
+    margin: 50px 440px 0px 0px;
+}
+
+.flexContainer-Profile-outline {
+    display: inline-block;
+    border: 2px solid #fff;
+    background-color: rgba(0,0,0, 0.1);
+    width: 730px;
+}
+
+
+.flexContainer-Profile {
+    display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	width: 100%;
+	margin: 10px auto 15px;
+	padding: 40px 10px 30px;
+}
+
+
+/**/
+.flexContainer-Profile .flexItem-PhotoName{
+    width: 45%;
+    position: relative;
+}
+
+.flexContainer-Profile .flexItem-Detail{
+    width: 45%;
+}
+
+.flexItem-PhotoName img{
+    border-radius: 200px;
+    width: 200px;
+    height: 200px;
+    display: inline-block;
+    margin-top: 30px;
+}
+
+.flexContainer-Profile .flexItem-PhotoName .userName{
+    width: 250px;
+    font-size: 2.4rem;
+    background: none;
+    color: #000;
+    opacity: 0.6;
+    margin-left: 40px;
+    word-break: break-word;
+}
+
+p.prof span {
+	font-size: 2.4rem;
+ 	font-weight: bold;
+}
+
+.flexContainer-Profile .flexItem-Detail p {
+    width: 250px;
+    margin-left: 10px;
+    background: none;
+    color: #000;
+    opacity: 0.6;
+}
+
+.flexContainer-Profile .flexItem-Detail p.workYear{
+    text-align: left;
+    font-size: 2.4rem;
+    word-break: break-word;
+}
+
+.flexContainer-Profile .flexItem-Detail p.language{
+    text-align: left;
+    font-size: 2.4rem;
+    word-break: break-word;
+}
+
+
+.flexContainer-Profile .flexItem-Detail p.comment{
+    text-align: left;
+    font-size: 2.4rem;
+    word-break: break-word;
+}
+/**/
+.goodBookFlexContainer {
+    display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	width: 760px;
+	margin: 0 auto;
+}
+
+.goodBookFlexContainer .goodBookFlexItem {
+    border: 2px solid #fff;
+    width: 30%;
+    margin: 5px auto;
+    padding-top: 20px;
+}
+
+.goodBookFlexContainer .empty {
+    border: none;
+}
+
+.goodBookFlexContainer .goodBookFlexItem p {
+    width: 150px;
+    margin: 0 auto;
+}
+
+
+
+.noGoodBookContainer {
+    font-size: 3.2rem;
+    border: 2px solid #fff;
+    width: 650px;
+    margin: 10px auto;
+    padding: 10px 30px;
+}
+
+
+.reviewBookFlexContainer {
+    display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	width: 750px;
+	margin: 0 auto 15px;
+	padding: 0px 5px;
+}
+
+.reviewBookFlexItem {
+    display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: wrap;
+	width: 45%;
+	margin: 0 auto 15px;
+	border: 2px solid #fff;
+} 
+
+.bookItem {
+    width: 60%;
+}
+
+.reviewItem {
+    width: 40%;
+}
+
+.reviewItem div.textarea {
+    margin-top: 25px;
+    width: 110px;
+    font-weight: bold;
+    opacity: 0.6;
+    word-break: break-word;
+}
+
+
+
+.reviewBookFlexContainer .reviewBookFlexItem .bookItem p {
+    width: 150px;
+    margin: 0 auto;
+}
+
+.reviewBookFlexItemEmpty {
+    border: none;   
+}
+
+.noReviewBookContainer {
+    font-size: 3.2rem;
+    border: 2px solid #fff;
+    width: 650px;
+    margin: 10px auto 0px;
+    padding: 10px 30px;
+}
+.padding {
+    padding-bottom: 100px;
+}
+
+}
