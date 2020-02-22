@@ -6,9 +6,12 @@
     $dotenv = Dotenv\Dotenv::createImmutable('../../env/');
     $dotenv->load();
     if(!isset($_SESSION['userId'])){
-        $goBackURL = "http://".$_SERVER['HTTP_HOST'];
-        header("Location:".$goBackURL. "/signIn.php");
-	exit();
+    	$goBackURL = 'https://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
+	if($_SERVER['HTTPS'] !== null){
+   		$goBackURL = 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
+	} 
+        header('Location:'.$goBackURL.'/signIn.php');
+	exit;
     }else {
         $userId = $_SESSION['userId'];
     }

@@ -9,8 +9,12 @@
     if(isset($_SESSION['userId']) && !empty($_SESSION['userId'])){
         $userId = $_SESSION['userId'];
     }else {
-        $goBackURL = "http://".$_SERVER['HTTP_HOST'];
-        header("Location:".$goBackURL. "/views/signIn.php");
+   	$goBackURL = 'https://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
+	if($_SERVER['HTTPS'] !== null){
+		$goBackURL = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
+	}
+	header('Location:'.$goBackURL.'/signIn.php');
+	exit;
     }
 
     $bookKeywords = "";

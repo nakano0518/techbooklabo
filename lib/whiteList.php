@@ -12,7 +12,7 @@ $keywords = [
     'modx', 'grav', 'jimdo', 'wix', 'squarespace', 'swift', 'kotlin', 'cordva',
     'ionic', 'monaca', 'phonegap', 'xamarin', 'unity', 'firebase', 'centos',
     'debian', 'ubuntu','fedora', 'red hat', 'freebsd', 'windowsserver', 'unix',
-    'sql', 'mysql', 'mariadb', 'postgresql', 'sqlite', 'sqlserver', 'oracle',
+    'linux','sql', 'mysql', 'mariadb', 'postgresql', 'sqlite', 'sqlserver', 'oracle',
     'db2', 'sublime text', 'atom', 'phpstorm', 'vscode', 'emacs', 'vi', 'smarty',
     'twig', 'blade', 'composer', 'npm', 'homebrew', 'macports', 'ssh', 'ftp','sftp',
     'ftps', 'dns', 'http', 'https', 'ajax', 'vpn', 'pptp', 'ipsec', 'l2tp', 'csv',

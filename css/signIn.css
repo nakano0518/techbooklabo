@@ -269,11 +269,11 @@ input[type="submit"]{
     font-size: 1.8rem;
 }
 
-button.testLogin{
-	width:240px;
-	height: 40px;
+a.testLogin{
+	width:210px;
 	font-size: 1.6rem;
 	font-weight: bold;
+	padding:10px 15px;
 }
 
 .forget a{

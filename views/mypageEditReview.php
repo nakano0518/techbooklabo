@@ -5,8 +5,12 @@ require_once "../lib/util.php";
 if(isset($_SESSION['userId']) && !empty($_SESSION['userId'])) {
     $userId = $_SESSION['userId'];
 }else {
-    $goBackURL = "http://".$_SERVER['HTTP_HOST']. dirname($_SERVER['PHP_SELF']);
-    header("Location:".$goBackURL. "/signIn.php");
+	$goBackURL = 'https://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
+	if($_SERVER['HTTPS'] !== null){
+   		$goBackURL = 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
+	}
+	header('Location:'.$goBackURL.'/signIn.php');
+	exit;   
 }
 
 if(isset($_POST) && !empty($_POST)) {
@@ -31,8 +35,12 @@ try{
     $update->bindValue(':reviewContent', $reviewContent, PDO::PARAM_STR);
     //実行し結果を取り出す
     $update->execute();
-    $goBackURL = "http://".$_SERVER['HTTP_HOST']. dirname($_SERVER['PHP_SELF']);
-    header("Location:".$goBackURL. "/mypageEdit.php");
+    $goBackURL = 'https://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
+    if($_SERVER['HTTPS'] !== null){
+        $goBackURL = 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
+    }
+    header('Location:'.$goBackURL.'/mypageEdit.php');
+    exit;
 }catch(Exception $e){
     echo $e->getMessage();
 }

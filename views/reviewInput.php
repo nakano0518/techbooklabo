@@ -12,8 +12,11 @@
     if(isset($_POST['reviewContent']) && !empty($_POST['reviewContent'])){
         $reviewContent = $_POST['reviewContent'];
     }else{
-	$goBackURL = "http://".$_SERVER['HTTP_HOST']. dirname($_SERVER['PHP_SELF']);
-        header("Location:".$goBackURL. "/bookDetail.php?bookNo=".$bookNo);
+	$goBackURL = "https://".$_SERVER['HTTP_HOST']. dirname($_SERVER['PHP_SELF']);
+        if($_SERVER['HTTPS'] !== null){
+	   $goBackURL = 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
+	}
+	header("Location:".$goBackURL. "/bookDetail.php?bookNo=".$bookNo);
         exit(); 	
     }
     

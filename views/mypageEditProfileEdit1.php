@@ -10,9 +10,12 @@ $dotenv->load();
 if(isset($_SESSION['userId']) && !empty($_SESSION['userId'])) {
 	$userId = $_SESSION['userId'];
 }else {
-	$goBackURL = "http://".$_SERVER['HTTP_HOST'];
-	header("Location:".$goBackURL."/views/signIn.php");
-	exit();
+	$goBackURL = 'https://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
+	if($_SERVER['HTTPS'] !== null){
+   		$goBackURL = 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
+	}
+	header('Location:'.$goBackURL.'/signIn.php');
+	exit;
 }
 
 //POST値チェック
@@ -68,9 +71,12 @@ if(!is_null(isNumber($workYear))){
 //エラーメッセージをセッションに保存し、編集ページにリダイレクト
 if(count($validationErrors)>0){
 	$_SESSION['validationErrors'] = $validationErrors;
-	$goBackURL = "http://".$_SERVER['HTTP_HOST'];
-	header("Location:".$goBackURL."/views/mypageEdit.php");
-	exit();
+	$goBackURL = 'https://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
+	if($_SERVER['HTTPS'] !== null){
+   		$goBackURL = 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
+	}
+	header('Location:'.$goBackURL.'/mypageEdit.php');
+	exit;	
 }
 
 
@@ -84,9 +90,12 @@ $date_str = ceil(microtime(true)*1000);
 
 if($_FILES['file']['error'] == 2) {
 	$_SESSION['fileSizeError'] = $_FILES['file']['error'];
-	$goBackURL = "http://".$_SERVER['HTTP_HOST'];
-	header("Location:".$goBackURL."/views/mypageEdit.php");
-	exit();
+	$goBackURL = 'https://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
+	if($_SERVER['HTTPS'] !== null){
+   		$goBackURL = 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
+	}
+	header('Location:'.$goBackURL.'/mypageEdit.php');
+	exit;
 }
 
 //拡張子取得
@@ -101,9 +110,12 @@ if(preg_match("/gif/i", $img_type) == 1) {
 }else if(preg_match("/jpeg/i", $img_type) == 1){
 	$extension = ".jpeg";
 }else {
-	$goBackURL = "http://".$_SERVER['HTTP_HOST'];
-	header("Location:".$goBackURL."/views/mypageEdit.php");
-	exit();
+	$goBackURL = 'https://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
+	if($_SERVER['HTTPS'] !== null){
+   		$goBackURL = 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
+	}
+	header('Location:'.$goBackURL.'/mypageEdit.php');
+	exit;
 }
 
 
@@ -114,31 +126,33 @@ $img_name = "img_".$date_str.$extension;
 //なければ、もともとDBに格納された画像URLを取得しDBへ再格納。
 $imageUrl = "";
 if(isset($img_path) && !empty($img_path)){
-$s3 = new Aws\S3\S3Client(array(
-	'version' => 'latest',
-	'credentials' => array(
-		'key' => getenv('AWS_ACCESS_KEY_ID'),
-		'secret' => getenv('AWS_SECRET_ACCESS_KEY'),
-	),
-	'region' => getenv('AWS_DEFAULT_REGION'),
-)); 
+	$s3 = new Aws\S3\S3Client(array(
+		'version' => 'latest',
+		'credentials' => array(
+			'key' => getenv('AWS_ACCESS_KEY_ID'),
+			'secret' => getenv('AWS_SECRET_ACCESS_KEY'),
+		),
+		'region' => getenv('AWS_DEFAULT_REGION'),
+	)); 
 
-//putObject()は失敗時例外を発生するのでtry～catchで囲む
-try {
-	$result = $s3->putObject(array(
-		'ACL' => 'private',
-		'Bucket' => getenv('AWS_BUCKET'),
-		'Key' => "profileImages/".$img_name,
-		'SourceFile' => $img_path,
-		'ContentType' => mime_content_type($img_path),
-	));
-	$imageUrl = $result['ObjectURL'];	
-}catch(Aws\S3\S3Exception $e) {
-	$goBackURL = "http://".$_SERVER['HTTP_HOST'];
-	header("Location:".$goBackURL."/views/mypageEdit.php");
-	exit();
-}
-echo 'finished';
+	//putObject()は失敗時例外を発生するのでtry～catchで囲む
+	try {
+		$result = $s3->putObject(array(
+			'ACL' => 'private',
+			'Bucket' => getenv('AWS_BUCKET'),
+			'Key' => "profileImages/".$img_name,
+			'SourceFile' => $img_path,
+			'ContentType' => mime_content_type($img_path),
+		));
+		$imageUrl = $result['ObjectURL'];	
+	}catch(Aws\S3\S3Exception $e) {
+		$goBackURL = 'https://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
+		if($_SERVER['HTTPS'] !== null){
+   			$goBackURL = 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
+		}
+		header('Location:'.$goBackURL.'/mypageEdit.php');
+		exit;
+	}
 }else{
  $user = 'nakano';
     $dbpassword = '3114yashi';
@@ -158,9 +172,12 @@ echo 'finished';
             $imageUrl = $datum['imageUrl'];
         }
     }catch(Exception $e){
-	$goBackURL = "http://".$_SERVER['HTTP_HOST'];
-	header("Location:".$goBackURL."/views/mypageEdit.php");
-	exit();
+    	$goBackURL = 'https://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
+	if($_SERVER['HTTPS'] !== null){
+   		$goBackURL = 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
+	}
+	header('Location:'.$goBackURL.'/mypageEdit.php');
+	exit;
     }
 }
 ?>
@@ -186,12 +203,15 @@ echo 'finished';
         $update->bindValue(':userId', $userId, PDO::PARAM_STR);
         $update->execute();
         $_SESSION['updateComplete'] = "更新が完了しました。";
-        $goBackURL = "http://".$_SERVER['HTTP_HOST'];
+        $goBackURL = "https://".$_SERVER['HTTP_HOST'];
         header("Location:".$goBackURL. "/views/mypageEdit.php");
     }catch(Exception $e){
-	$goBackURL = "http://".$_SERVER['HTTP_HOST'];
-	header("Location:".$goBackURL."/views/mypageEdit.php");
-	exit();
+    	$goBackURL = 'https://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
+	if($_SERVER['HTTPS'] !== null){
+   		$goBackURL = 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
+	}
+	header('Location:'.$goBackURL.'/mypageEdit.php');
+	exit;
     }
 ?>
 

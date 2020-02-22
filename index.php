@@ -68,7 +68,7 @@
 		----------------------------------------------------------------------*/
 		$counter = '';//COUNT()の設定
 		$join = '';//テーブル結合句
-    		$orderBy = '';//ORDER BY句
+    		$orderBy = ' ORDER BY t_book.created_at DESC';//ORDER BY句
     		if(isset($_GET['sort'])) {
             		$sort = es($_GET['sort']);
             		switch($sort) {
@@ -85,29 +85,28 @@
                     			$orderBy = ' ORDER BY pages DESC';//ページ降順
 					break;
 				case 5:
-					$counter = ', COUNT(*) AS kensu';
+					$counter = ', COUNT(t_good.no) AS kensu';
 					$join = ' LEFT OUTER JOIN t_good ON t_good.no = t_book.no';
-					$orderBy = ' GROUP BY no ORDER BY kensu ASC';//レビュー数の昇順
+					$orderBy = ' GROUP BY t_book.no ORDER BY kensu ASC, t_book.created_at DESC';//お気に入り数の昇順
 					break;
 
 				case 6:
-					$counter = ', COUNT(*) AS kensu';
+					$counter = ', COUNT(t_good.no) AS kensu';
 					$join = ' LEFT OUTER JOIN t_good ON t_good.no = t_book.no';
-					$orderBy = ' GROUP BY no ORDER BY kensu DESC';//レビュー数の昇順
+					$orderBy = ' GROUP BY t_book.no ORDER BY kensu DESC, t_book.created_at DESC';//お気に入り数の降順
 					break;
 				case 7:
-					$counter = ', COUNT(*) AS kensu';
+					$counter = ', COUNT(t_review.no) AS kensu';
 					$join = ' LEFT OUTER JOIN t_review ON t_review.no = t_book.no';
-					$orderBy = ' GROUP BY no ORDER BY kensu ASC';//レビュー数の昇順
+					$orderBy = ' GROUP BY t_book.no ORDER BY kensu ASC, t_book.created_at DESC';//レビュー数の昇順
 					break;
-				case 8:
-					
-					$counter = ', COUNT(*) AS kensu';
+				case 8:					
+					$counter = ', COUNT(t_review.no) AS kensu';
 					$join = ' LEFT OUTER JOIN t_review ON t_review.no = t_book.no';
-					$orderBy = ' GROUP BY no ORDER BY kensu DESC';//レビュー数の昇順
+					$orderBy = ' GROUP BY t_book.no ORDER BY kensu DESC, t_book.created_at DESC';//レビュー数の降順
 					break;
 				default:
-					$orderBy = '';
+					$orderBy = ' ORDER BY t_book.created_at DESC';
 					break;
             		}
     		}
@@ -139,7 +138,7 @@
 		}
 
 		//表示する本のコンテンツを取得するSQL
-		$sql = 'SELECT t_book.bookTitle, t_book.imageUrl, t_book.no'.$counter.' FROM t_book'.$join.$where.$orderBy.' LIMIT :start, :max';
+		$sql = 'SELECT t_book.bookTitle, t_book.imageUrl, t_book.no, t_book.created_at'.$counter.' FROM t_book'.$join.$where.$orderBy.' LIMIT :start, :max';
 		$select = $pdo->prepare($sql);
 		if($now ==1){
    			//1ページ目の処理
@@ -280,7 +279,7 @@
     ?>
 　　 <div class="book">
        <a href="./views/bookDetail.php?bookNo=<?= $no; ?>">
-        <img src="<?php echo (substr($row['imageUrl'],0,1) == 'h')? $row['imageUrl'] : './images/'.$row['imageUrl']; ?>" width="150" height="180"><br>
+        <img src="<?php echo $row['imageUrl']; ?>" width="150" height="180"><br>
        <p class="capture"><?= $row['bookTitle']; ?></p>
        </a>
      </div>

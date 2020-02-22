@@ -14,7 +14,6 @@
     if(isset($_GET)&& !empty($_GET)){
         $bookNo = es($_GET['bookNo']);
     }
-    require_once ('../lib/util.php');
     
 /* -------------------------------------------------------------------------
 本の情報をt_bookから取得する部分
