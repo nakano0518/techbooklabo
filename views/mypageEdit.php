@@ -191,7 +191,7 @@ $image = $getObj['@metadata']['effectiveUri'];
     <?php if($_SESSION['validationErrors']):?>
         <p class="errorMessage">エラーがありました。</p>
     <?php endif; ?>
-    <form action="<?php echo $goBackURL; ?>/views/mypageEditProfileEdit1.php" enctype="multipart/form-data" method="post" class="userInfo">
+    <form action="<?php echo $goBackURL; ?>/views/mypageEditProfileEdit.php" enctype="multipart/form-data" method="post" class="userInfo">
         <div class="flexContainer-Profile-outline">
             <div class="flexContainer-Profile">
                 <div class="flexItem-PhotoName">

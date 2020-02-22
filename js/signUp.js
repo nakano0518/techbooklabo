@@ -1,100 +1,48 @@
-//ページが読み込まれたタイミングでajaxでwriteJsonFromDB.phpに飛ばす
-//(writeJsonFromDB.phpではDBからuserId情報を取り出しJSONファイルに書き出す)
-
-document.addEventListener('DOMContentLoaded', function(){
-    $.ajax({
-            type: 'GET',
-            url: '../views/writeJsonFromDB.php',
+//ユーザーIDが既に使用されているか
+//入力値が変更されたタイミングでAjaxでデータベースと照合しエラーメッセージを書き換える
+$(function(){
+    var val
+    $('input[name="newUserId"]').change(function(){
+        val = $(this).val();
+        console.log(val);
+        $.ajax({
+            type: 'POST',
+            url: './userIdValidationAjax.php',
+            data: {"val": val}
         }).done(function(data){
             console.log('Ajax Success');
             console.log(data);
-        }).fail(function(msg){
-            console.log('Ajax Error');
-            console.log(msg);
-        });
-},false);
-
-$(function(){
-    $('input[name="newUserId"]').keyup(function(){
-        var userId = $(this).val();
-        var stack;
-        $.getJSON('../json/userId.json', function(data){
-            for(var i in data){
-                if(userId === i){
-                    stack = i;
+            console.log(typeof data);
+            if(data === "0"){
+                $('.userIdError_ajax').text('〇 ユーザーIDは使用できます。');
+                if(!$('.userIdError_ajax').hasClass('green')){
+                    $('.userIdError_ajax').addClass('green');
                 }
-            }
-            if(userId === ''){
-                $('.userIdError_ajax').text('× ユーザーIDの入力は必須です。');
-                if($('.userIdError_ajax').hasClass('green')){
-                    $('.userIdError_ajax').removeClass('green');
-                }    
-            }else if(stack){
+            }else if(data === "1") {
                 $('.userIdError_ajax').text('× ユーザーIDは既に使用されています。');
                 if($('.userIdError_ajax').hasClass('green')){
                     $('.userIdError_ajax').removeClass('green');
                 }
             }else {
-                $('.userIdError_ajax').text('〇 ユーザーIDは使用できます。');
-                if(!$('.userIdError_ajax').hasClass('green')){
-                    $('.userIdError_ajax').addClass('green');
-                }
-            }
-        })
-    });
-})
-
-
-//フォームの入力値が変更されたら、入力値とJSON形式のuserIdを照合する。
-$(function(){
-    $('input[name="newUserId"]').keyup(function(){
-        
-        //classの初期化
-        if($('.userIdError_ajax').hasClass('userIdEmpty')){
-            $('.userIdError_ajax').removeClass('userIdEmpty');
-        }
-        
-        var userId = $(this).val();
-        
-        $.ajax({
-            type: 'POST',
-            url: '../views/readJsonFromDB.php',
-            data: {"userId": userId}
-        }).done(function(data){
-            console.log('Ajax Success');
-            console.log(data)
-            var result = data;
-            console.log(result);
-            var val;
-            val = $('input[name="newUserId"]').val();
-            if(val === ''){
                 $('.userIdError_ajax').text('× ユーザーIDの入力は必須です。');
-                if($('.userIdError_ajax').hasClass('green')){
-                    $('.userIdError_ajax').removeClass('green');
-                }    
-            }else if(result === ''){
-                $('.userIdError_ajax').text('〇 ユーザーIDは使用できます。');
-                if(!$('.userIdError_ajax').hasClass('green')){
-                    $('.userIdError_ajax').addClass('green');
-                }
-            }else {
-                $('.userIdError_ajax').text('× ユーザーIDは既に使用されています。');
                 if($('.userIdError_ajax').hasClass('green')){
                     $('.userIdError_ajax').removeClass('green');
                 }
             }
             
             if($('.userIdError_ajax').text() === '× ユーザーIDの入力は必須です。') {
-                $('.userIdError_ajax').addClass('userIdEmpty');
+                $('.userIdError_ajax').attr('style', 'margin-right: 15px;');
+            }else {
+                if($('.userIdError_ajax').is('[style]')){
+                    $('.userIdError_ajax').removeAttr('style');
+                }
             }
-            
         }).fail(function(msg){
             console.log('Ajax Error');
             console.log(msg);
         });
     });
 });
-
 //ユーザーIDの入力欄で前回入力が保持された状態でのエラー文は
 //入力欄が変更されたら削除する
 $('input[name="newUserId"]').keyup(function(){

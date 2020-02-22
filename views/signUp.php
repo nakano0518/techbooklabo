@@ -96,7 +96,7 @@ if(isset($_SESSION['validationErrors'])||!empty($_SESSION['validationErrors'])){
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="../js/layout.js"></script>
-    <script src="../js/signUp1.js"></script>
+    <script src="../js/signUp.js"></script>
 
 </body>
 </html>

@@ -53,7 +53,7 @@ $errorContent = <<< EOD
 <div class="errorSection">
 <div class="logo">
 <img src="../images/booklogo.svg">
-<span class="title">BookShelf</span>
+<span class="title">TechBookLabo</span>
 </div>
 <h1>エラーがありました</h1>
 <div class="contents">
@@ -76,7 +76,7 @@ echo $errorContent;
     <div class="errorSection">
       <div class="logo">
         <img src="../images/booklogo.svg">
-        <span class="title">BookShelf</span>
+        <span class="title">TechBookLabo</span>
       </div>
       <h1>エラーがありました</h1>
       <div class="contents">
@@ -92,7 +92,7 @@ echo $errorContent;
         <div class="signIn">
             <div class="logo">
                 <img src="../images/booklogo.svg">
-                <span class="title">BookShelf</span>
+                <span class="title">TechBookLabo</span>
             </div>
             <h1>下記内容で登録しました</h1>
             <div class="contents">
