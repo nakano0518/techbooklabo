@@ -1,10 +1,16 @@
 <?php
 require_once '../vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable('../../env/');
+$dotenv->load();
 
 $h = new sampleClass();
 
 $h->Hello();
 
-$db = new DbConnect();
+echo getenv("DB_USERNAME");
 
-var_dump($db->getUser());
+$db = new DbConnect(getenv("DB_USERNAME"), getenv("DB_PASSWORD"), getenv("DB_DATABASE"),getenv("DB_HOST"));
+
+echo $db->getUser();
+
+echo $db->getDsn();
