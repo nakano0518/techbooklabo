@@ -100,7 +100,7 @@ if((isset($userId) && !empty($userId)) && (isset($bookNo) && !empty($bookNo))){
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             // 例外がスローされる設定にする
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    		$reviewSql = 'SELECT t_users.imageUrl, t_users.name, t_users.workYear, t_users.language, t_review.reviewContent 
+    		$reviewSql = 'SELECT t_users.imageUrl, t_users.name, t_users.workYear, t_users.language, t_users.followId, t_review.reviewContent 
     		FROM t_users INNER JOIN t_review ON t_users.userId = t_review.userId WHERE t_review.no = :bookNo'; 
     		$reviewSqlSelect = $pdo->prepare($reviewSql);
             $reviewSqlSelect->bindValue(':bookNo', $bookNo, PDO::PARAM_STR);
@@ -131,6 +131,22 @@ if(isset($_SESSION['userId'])||!empty($_SESSION['userId'])){
         echo $e->getMessage();
     }
 }
+?>
+<?php
+/* ----------------------------------------------------------------------
+S3から画像の読み取りのためのs3インスタンスの生成
+-----------------------------------------------------------------------*/
+require_once '../vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable('../../env/');
+$dotenv->load();
+$s3 = new Aws\S3\S3Client(array(
+	'version' => 'latest',
+	'credential' => array(
+		'key' => getenv('AWS_BUCKET'),
+		'secret' => getenv('AWS_SECRET_ACCESS_KEY'),
+	),
+	'region' => getenv('AWS_DEFAULT_REGION'),
+));
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -248,8 +264,19 @@ if(isset($_SESSION['userId'])||!empty($_SESSION['userId'])){
                     <div class="userInfo">
                         <?php
                             $reviewDataImageUrl = es($reviewData['imageUrl']);
-                        ?>
-                        <a href='#'><img src="<?php echo $reviewDataImageUrl === "" ?  '../images/userphoto/userDefault.jpg' : "../images/userphoto/$reviewDataImageUrl" ; ?>" alt="レビューしたユーザーの写真"></a>
+			    $followId = es($reviewData['followId']);
+			?>
+			<?php
+			/* ---------------------------------------------------------
+			s3インスタンスから画像の取出し
+			----------------------------------------------------------*/
+			$getObj = $s3->getObject(array(
+				'Bucket' => getenv('AWS_BUCKET'),
+				'Key' => 'profileImages/'.basename($reviewDataImageUrl),
+			));	
+			$image = $getObj['@metadata']['effectiveUri'];
+			?>
+                        <a href="<?php echo './lookMyPage.php?followId='.$followId; ?>"><img src="<?php echo $reviewDataImageUrl === "" ?  '../images/userphoto/userDefault.jpg' : $image ; ?>" alt="レビューしたユーザーの写真"></a>
                         <p><?php echo es($reviewData['name']) ; ?>さん</p>
                         <p>実務経験年数：<?php echo es($reviewData['workYear']); ?>年</p>
                         <p>得意な言語：<?php echo es($reviewData['language']); ?></p>
