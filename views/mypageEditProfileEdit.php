@@ -19,11 +19,11 @@ if(isset($_SESSION['userId']) && !empty($_SESSION['userId'])) {
 }
 
 //POST値チェック
-if(isset($_POST) && !empty($_POST)) {
+if(isset($_POST) && !empty($_POST)){
 	$name = es($_POST['name']);
-	$passsword = es($_POST['password']);
+	$password = es($_POST['password']);
 	$passwordh = password_hash($password, PASSWORD_DEFAULT);
-	$passwordConfirm = es($_POST['passwordComfirm']);
+	$passwordConfirm = es($_POST['passwordConfirm']);
 	$email = es($_POST['email']);
 	$workYear = es($_POST['workYear']);
 	$language = es($_POST['language']);
@@ -86,6 +86,8 @@ $img_name = $_FILES['file']['name'];
 $img_path = $_FILES['file']['tmp_name']; 
 $date_str = ceil(microtime(true)*1000);
 
+
+if(isset($img_path) && !empty($img_path)){
 //画像のバイト数チェック
 
 if($_FILES['file']['error'] == 2) {
@@ -97,6 +99,7 @@ if($_FILES['file']['error'] == 2) {
 	header('Location:'.$goBackURL.'/mypageEdit.php');
 	exit;
 }
+
 
 //拡張子取得
 //imagetype($img_path)でImagetype定数(IMAGETYPE_JPEGなど)を返却
@@ -118,6 +121,8 @@ if(preg_match("/gif/i", $img_type) == 1) {
 	exit;
 }
 
+echo 'c';
+exit;
 
 //ファイル名の確定
 $img_name = "img_".$date_str.$extension;
@@ -125,7 +130,6 @@ $img_name = "img_".$date_str.$extension;
 //一時フォルダに画像があればS3に追加しそのURLを取得しDBへ保存、
 //なければ、もともとDBに格納された画像URLを取得しDBへ再格納。
 $imageUrl = "";
-if(isset($img_path) && !empty($img_path)){
 	$s3 = new Aws\S3\S3Client(array(
 		'version' => 'latest',
 		'credentials' => array(
@@ -205,7 +209,11 @@ if(isset($img_path) && !empty($img_path)){
         $_SESSION['updateComplete'] = "更新が完了しました。";
         $goBackURL = "https://".$_SERVER['HTTP_HOST'];
         header("Location:".$goBackURL. "/views/mypageEdit.php");
+	var_dump($_SESSION['updateComplete']);
+	exit;
     }catch(Exception $e){
+	echo $e->getMessage();
+	exit;
     	$goBackURL = 'https://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
 	if($_SERVER['HTTPS'] !== null){
    		$goBackURL = 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
