@@ -1,9 +1,7 @@
 <?php
 
-//composer.jsonでclassesフォルダをnamespace Classesでマッピングしたので
-//namespace Classesを記述する。
-namespace Classes;
-
+//composer.jsonでsrcフォルダをnamespace ""でマッピングしたので
+//namespaceを記述する必要はない
 
 class sampleClass{
 	public function Hello() {

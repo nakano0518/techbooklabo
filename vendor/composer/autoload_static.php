@@ -47,10 +47,6 @@ class ComposerStaticInita366ce6bc5674798d62482197cd01002
         array (
             'Dotenv\\' => 7,
         ),
-        'C' => 
-        array (
-            'Classes\\' => 8,
-        ),
         'A' => 
         array (
             'Aws\\' => 4,
@@ -102,14 +98,14 @@ class ComposerStaticInita366ce6bc5674798d62482197cd01002
         array (
             0 => __DIR__ . '/..' . '/vlucas/phpdotenv/src',
         ),
-        'Classes\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/classes',
-        ),
         'Aws\\' => 
         array (
             0 => __DIR__ . '/..' . '/aws/aws-sdk-php/src',
         ),
+    );
+
+    public static $fallbackDirsPsr4 = array (
+        0 => __DIR__ . '/../..' . '/src',
     );
 
     public static function getInitializer(ClassLoader $loader)
@@ -117,6 +113,7 @@ class ComposerStaticInita366ce6bc5674798d62482197cd01002
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInita366ce6bc5674798d62482197cd01002::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInita366ce6bc5674798d62482197cd01002::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInita366ce6bc5674798d62482197cd01002::$fallbackDirsPsr4;
 
         }, null, ClassLoader::class);
     }

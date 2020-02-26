@@ -17,6 +17,6 @@ return array(
     'GuzzleHttp\\Promise\\' => array($vendorDir . '/guzzlehttp/promises/src'),
     'GuzzleHttp\\' => array($vendorDir . '/guzzlehttp/guzzle/src'),
     'Dotenv\\' => array($vendorDir . '/vlucas/phpdotenv/src'),
-    'Classes\\' => array($baseDir . '/classes'),
     'Aws\\' => array($vendorDir . '/aws/aws-sdk-php/src'),
+    '' => array($baseDir . '/src'),
 );
