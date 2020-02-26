@@ -14,3 +14,7 @@ $db = new DbConnect(getenv("DB_USERNAME"), getenv("DB_PASSWORD"), getenv("DB_DAT
 echo $db->getUser();
 
 echo $db->getDsn();
+
+$db->createPdo();
+
+var_dump($db->getPdo());
