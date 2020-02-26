@@ -26,12 +26,31 @@ class DbConnect{
 		$this->getPdo()->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);//プリペアドステートメントのエミュレーション無効
         	$this->getPdo()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);//例外がスローされる設定にする
 	}
-	//SELECT文で取得したデータを返却
-	//第一引数にSQL文、第二引数にbindvalu値
-	public function select($sql) {
-		return $sql;
+	//SELECT文でデータを取得
+	//第一引数にSQL文、
+	//第二引数にbindvalu値は、[[],[],[],...]の形の2次元配列、その中の1次元配列の中にbindValue時の引数3つを入れて渡す
+	public function select($sql, $bindValues=false) {
+		$stm = $this->getPdo()->prepare($sql);
+		if($bindValues){
+			for($i = 0; $i < count($bindValues), $i++) {
+				$stm->bindValue($bindValues[$i][0], $bindValues[$i][1], $bindValues[$i][2]);
+			}
+		}
+		$stm->execute();
+		$data = $stm->fetchAll(PDO::FETCH_ASSOC);
+		return $data;
 	}
 
+	//INSERT, DELETE, UPDATE文の実行
+	public function indelup($sql, $bindValues=false) {
+		$indelup = $this->getPdo()->prepare($sql);
+		if($bindValues) {	
+			for($i = 0; $i < count($bindValues), $i++) {
+				$stm->bindValue($bindValues[$i][0], $bindValues[$i][1], $bindValues[$i][2]);
+			}
+		}
+		$indelup->execute();
+	}
 
 	
 	
