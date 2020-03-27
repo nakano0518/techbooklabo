@@ -1,158 +1,141 @@
 
 <?php
-    session_start();
-    session_regenerate_id(true);
+	session_start();
+    	session_regenerate_id(true);
      
-    require_once '../lib/util.php';
+    	require_once '../lib/util.php';
     
-    if(isset($_SESSION['userId']) && !empty($_SESSION['userId'])) {
-        $userId = $_SESSION['userId'];
-    }
-    if(isset($_SESSION['reviewContent']) && !empty($_SESSION['reviewContent'])) {
-        $reviewContent = $_SESSION['reviewContent'];
-    }
-    if(isset($_GET)&& !empty($_GET)){
-        $bookNo = es($_GET['bookNo']);
-    }
+    	if(isset($_SESSION['userId']) && !empty($_SESSION['userId'])) {
+        	$userId = $_SESSION['userId'];
+    	}
+    	if(isset($_SESSION['reviewContent']) && !empty($_SESSION['reviewContent'])) {
+        	$reviewContent = $_SESSION['reviewContent'];
+    	}
+    	if(isset($_GET)&& !empty($_GET)){
+        	$bookNo = es($_GET['bookNo']);
+    	}
     
 /* -------------------------------------------------------------------------
 本の情報をt_bookから取得する部分
 --------------------------------------------------------------------------*/
-    $user = 'nakano';
-    $dbpassword = '3114yashi';
-    $dbName = 'BookReview';
-    $host = 'techbookreview.ccbw4hq0h1r9.ap-northeast-1.rds.amazonaws.com';
-    $dsn = "mysql:host={$host};dbname={$dbName};charset=utf8";
-    try {
-        $pdo = new PDO($dsn, $user, $dbpassword);
-        $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);//プリペアドステートメントのエミュレーション無効
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);//例外がスローされる設定にする
-        $sql = "SELECT * FROM t_book WHERE no = :bookNo";
-        $select = $pdo->prepare($sql);
-        $select->bindValue(":bookNo", $bookNo, PDO::PARAM_STR);
-        //実行し結果を取り出す
-        $select->execute();
-        $data = $select->fetch(PDO::FETCH_ASSOC);
-        if(!$data) {
-           throw new Exception('データベースエラー');
-        }
-        
-    }catch(Exception $e) {
-        echo '<span class="error">エラーがありました。</span><br>';
-        echo $e->getMessage().'<br>';
-    }
+    	try {
+    		$db = new DbConnect(getenv("DB_USERNAME"), getenv("DB_PASSWORD"), getenv("DB_DATABASE"), getenv("DB_HOST"));
+    		$db->createPdo();
+        	$sql = "SELECT * FROM t_book WHERE no = :bookNo";
+		$data = $db->selectfetch($sql, [[":bookNo", $bookNo, PDO::PARAM_STR]]);
+        	if(!$data) {
+           		throw new Exception('データベースエラー');
+        	}
+		//本の各種情報を変数に格納
+        	$category = es($data['category']);
+        	$title = es($data['bookTitle']);
+        	$imageUrl = es($data['imageUrl']);
+        	$affiliateUrl = es($data['affiliateUrl']);
+        	$price = es($data['price']);
+        	$pages = es($data['pages']);
+        	$no = es($data['no']);
+        	$description = es($data['description']);
+	}catch(Exception $e) {
+        	echo '<span class="error">エラーがありました。</span><br>';
+        	echo $e->getMessage().'<br>';
+    	}
 ?>
 <?php
 /* -------------------------------------------------------------------------
-ログイン後お気に入りボタンの初期状態の取得
+ログイン後、お気に入りボタンの着色の有無
 ------------------------------------------------------------------------- */
-if((isset($userId) && !empty($userId)) && (isset($bookNo) && !empty($bookNo))){
-    try{
-        $pdo = new PDO($dsn, $user, $dbpassword);
-        $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);//プリペアドステートメントのエミュレーション無効
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);//例外がスローされる設定にする    
-        $sql = "SELECT delete_flg FROM t_good WHERE userId = :userId AND no = :bookNo";
-        $select = $pdo->prepare($sql);
-        $select->bindValue(':userId', $userId, PDO::PARAM_STR);
-        $select->bindValue(':bookNo', $bookNo, PDO::PARAM_STR);
-        //実行し結果を取り出す
-        $select->execute();
-        $firstStarState = $select->fetch(PDO::FETCH_ASSOC);
-    }catch(Exception $e){
-        echo $e->getMessage();
-    }
-}
+	if((isset($userId) && !empty($userId)) && (isset($bookNo) && !empty($bookNo))){
+		try{
+    			$db = new DbConnect(getenv("DB_USERNAME"), getenv("DB_PASSWORD"), getenv("DB_DATABASE"), getenv("DB_HOST"));
+    			$db->createPdo();
+        		$sql = "SELECT delete_flg FROM t_good WHERE userId = :userId AND no = :bookNo";
+			$firstStarState = $db->selectfetch($sql, [[":userId", $userId, PDO::PARAM_STR], [":bookNo", $bookNo, PDO::PARAM_STR]]);
+    		}catch(Exception $e){
+        		echo '<span class="error">エラーがありました。</span><br>';
+        		echo $e->getMessage();
+    		}
+	}
 ?>
 <?php
 /* -------------------------------------------------------------------------
-お気に入りの初期総数の取得
+お気に入りされた総数の取得
 ------------------------------------------------------------------------- */
-if(isset($bookNo) && !empty($bookNo)){
-    try{
-    $pdo = new PDO($dsn, $user, $dbpassword);
-    $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);//プリペアドステートメントのエミュレーション無効
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);//例外がスローされる設定にする    
-    $sql = "SELECT COUNT(*) AS count FROM t_good WHERE  no = :bookNo";
-    $select = $pdo->prepare($sql);
-    $select->bindValue(':bookNo', $bookNo, PDO::PARAM_STR);
-    //実行し結果を取り出す
-    $select->execute();
-    $firstStarCount = $select->fetchAll(PDO::FETCH_ASSOC);
-}catch(Exception $e){
-    echo $e->getMessage();
-}
-}
+	if(isset($bookNo) && !empty($bookNo)){
+		try{
+    			$db = new DbConnect(getenv("DB_USERNAME"), getenv("DB_PASSWORD"), getenv("DB_DATABASE"), getenv("DB_HOST"));
+    			$db->createPdo();
+    			$sql = "SELECT COUNT(*) AS count FROM t_good WHERE  no = :bookNo";
+			$firstStarCount = $db->selectfetchAll($sql, [[":bookNo", $bookNo, PDO::PARAM_STR]]);
+		}catch(Exception $e){
+    			echo $e->getMessage();
+		}
+	}
 ?>
 <?php
 /* -------------------------------------------------------------------------
     投稿されたレビューをデータベースから取り出す。
 --------------------------------------------------------------------------*/
-    if(isset($_GET['bookNo']) && !empty($_GET['bookNo'])) {//ログイン状態でなくてもレビューは見られるように
-        // DBから本の詳細データを取得
-        try{
-    		$pdo = new PDO($dsn, $user, $dbpassword);
-            // プリペアドステートメントのエミュレーションを無効にする
-            $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-            // 例外がスローされる設定にする
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    		$reviewSql = 'SELECT t_users.imageUrl, t_users.name, t_users.workYear, t_users.language, t_users.followId, t_review.reviewContent 
-    		FROM t_users INNER JOIN t_review ON t_users.userId = t_review.userId WHERE t_review.no = :bookNo'; 
-    		$reviewSqlSelect = $pdo->prepare($reviewSql);
-            $reviewSqlSelect->bindValue(':bookNo', $bookNo, PDO::PARAM_STR);
-            $reviewSqlSelect->execute();
-    		$reviewDatas = $reviewSqlSelect->fetchAll(PDO::FETCH_ASSOC);
-	    }catch(Exception $e){
-		    echo '<span class="error">エラーがありました。</span><br>';
-            echo $e->getMessage().'<br>';
-	    }
-    }
+    	if(isset($_GET['bookNo']) && !empty($_GET['bookNo'])) {//ログイン状態でなくてもレビューは見られるようにuserIdで制限はしない
+        	// DBから本の詳細データを取得
+        	try{
+    			$db = new DbConnect(getenv("DB_USERNAME"), getenv("DB_PASSWORD"), getenv("DB_DATABASE"), getenv("DB_HOST"));
+    			$db->createPdo();
+    			$sql = 'SELECT t_users.imageUrl, t_users.name, t_users.workYear, t_users.language, t_users.followId, t_review.reviewContent FROM t_users INNER JOIN t_review ON t_users.userId = t_review.userId WHERE t_review.no = :bookNo'; 
+			$reviewDatas = $db->selectfetchAll($sql, [[":bookNo", $bookNo, PDO::PARAM_STR]]);
+	    	}catch(Exception $e){
+			echo '<span class="error">エラーがありました。</span><br>';
+            		echo $e->getMessage().'<br>';
+	    	}
+    	}
 
 ?>
 <?php
 /*----------------------------------------------------------------------
     ドロワーメニューに表示するユーザー名の取得 
 ----------------------------------------------------------------------*/
-if(isset($_SESSION['userId'])||!empty($_SESSION['userId'])){
-    try{
-        $pdo = new PDO($dsn, $user, $dbpassword);
-        $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);//プリペアドステートメントのエミュレーション無効
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);//例外がスローされる設定にする
-        $sql = "SELECT name FROM t_users WHERE userId = :userId";
-        $select = $pdo->prepare($sql);
-        $select->bindValue(':userId', $userId, PDO::PARAM_STR);
-        $select->execute();
-        $name = $select->fetch(PDO::FETCH_ASSOC);
-    }catch(Exception $e){
-        echo $e->getMessage();
-    }
-}
+	if(isset($_SESSION['userId'])||!empty($_SESSION['userId'])){
+    		try{
+    			$db = new DbConnect(getenv("DB_USERNAME"), getenv("DB_PASSWORD"), getenv("DB_DATABASE"), getenv("DB_HOST"));
+    			$db->createPdo();
+        		$sql = "SELECT name FROM t_users WHERE userId = :userId";
+			$name = $db->selectfetch($sql, [[":userId", $userId, PDO::PARAM_STR]]);
+    		}catch(Exception $e){
+			echo '<span class="error">エラーがありました。</span><br>';
+        		echo $e->getMessage().'<br>';
+    		}
+	}
 ?>
 <?php
 /* ----------------------------------------------------------------------
 S3から画像の読み取りのためのs3インスタンスの生成
 -----------------------------------------------------------------------*/
-require_once '../vendor/autoload.php';
-$dotenv = Dotenv\Dotenv::createImmutable('../../env/');
-$dotenv->load();
-$s3 = new Aws\S3\S3Client(array(
-	'version' => 'latest',
-	'credential' => array(
-		'key' => getenv('AWS_BUCKET'),
-		'secret' => getenv('AWS_SECRET_ACCESS_KEY'),
-	),
-	'region' => getenv('AWS_DEFAULT_REGION'),
-));
+	require_once '../vendor/autoload.php';
+	$dotenv = Dotenv\Dotenv::createImmutable('../../env/');
+	$dotenv->load();
+	$s3 = new Aws\S3\S3Client(array(
+		'version' => 'latest',
+		'credential' => array(
+			'key' => getenv('AWS_BUCKET'),
+			'secret' => getenv('AWS_SECRET_ACCESS_KEY'),
+		),
+		'region' => getenv('AWS_DEFAULT_REGION'),
+	));
 ?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">    
-<link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Sawarabi+Gothic&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/bookDetail.css">
-    <title>TechBookLabo | 書籍詳細ページ</title>
-</head>
+	<head>
+    		<meta charset="UTF-8">
+    		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">    
+		<link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Sawarabi+Gothic&display=swap" rel="stylesheet">
+    		<link rel="stylesheet" href="../css/bookDetail.css">
+    		<title>TechBookLabo | 書籍詳細ページ</title>
+	</head>
 <body>
     <!-- ドロワーメニュー -->
         <div class="drawer">
@@ -208,17 +191,6 @@ $s3 = new Aws\S3\S3Client(array(
         </section>
     </header>
     <main>
-        <?php
-        // データベースから抽出したデータを変数に代入
-        $category = es($data['category']);
-        $title = es($data['bookTitle']);
-        $imageUrl = es($data['imageUrl']);
-        $affiliateUrl = es($data['affiliateUrl']);
-        $price = es($data['price']);
-        $pages = es($data['pages']);
-        $no = es($data['no']);
-        $description = es($data['description']);
-        ?>
         <section class="bookDetail">
             <h2 class="titleSection">
                 <p class="category"><?= $category; ?></span><br>

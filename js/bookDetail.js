@@ -8,7 +8,7 @@
 $(function(){
     //総数の取得
     var count = parseInt($('.starCount').text());
-    $('.fa-star').on('click', function(){
+    $('#star').on('click', function(){
         if($(this).hasClass('far')){
             $(this).removeClass('far');
             $(this).addClass('fas');
@@ -27,7 +27,7 @@ $(function(){
 $(function(){
     var bookNo;
     var userId;
-    $('.fa-star').on('click', function(){
+    $('#star').on('click', function(){
         bookNo = $(this).parents('.post').data('no');
         userId = $(this).parents('.post').data('id');
         $.ajax({
