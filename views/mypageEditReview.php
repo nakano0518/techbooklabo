@@ -32,7 +32,7 @@
     			[':userId', $userId, PDO::PARAM_STR],
     			[':no', $bookNo, PDO::PARAM_STR],
     			[':reviewId', $reviewId, PDO::PARAM_INT],
-    			[':reviewContent', $reviewContent, PDO::PARAM_STR)]
+    			[':reviewContent', $reviewContent, PDO::PARAM_STR]
 		]);
     		$goBackURL = 'https://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
     		if($_SERVER['HTTPS'] !== null){

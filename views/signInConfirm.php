@@ -8,6 +8,7 @@
 	$dotenv = Dotenv\Dotenv::createImmutable('../../env/');
 	$dotenv->load();
 
+
     	//CSRF(送信トークンとセッション保存トークンが一致するか確認)
     	if(isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
 		//何もしない

@@ -1,7 +1,7 @@
 <?php
     	session_start();
     	session_regenerate_id(true);
-	require_once '../src/util.php';
+	require_once '../lib/util.php';
     	require_once '../lib/whiteList.php';
 	require_once '../vendor/autoload.php';
 	$dotenv = Dotenv\Dotenv::createImmutable('../../env/');

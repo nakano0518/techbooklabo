@@ -13,7 +13,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 	<head>
     		<meta charset="UTF-8">
     		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -61,8 +61,14 @@
         	</div>
     
 		<?php
-    			killSession();
-    			//CSRF対策:セッションにトークンを保存しておく
+    			//エラー用セッションを空に
+			$_SESSION['errors']['userIdEmpty'] = '';
+			$_SESSION['errors']['passwordEmpty'] = '';
+			$_SESSION['errors']['userIdPasswordError'] = '';
+			$_SESSION['errors']['dbError'] = '';
+			
+
+			//CSRF対策:セッションにトークンを保存しておく
     			$_SESSION['csrf_token'] = $csrf_token;
     		?>
 	</body>
