@@ -1,8 +1,7 @@
 <?php
     	session_start();
     	session_regenerate_id(true);
-    	require_once '../lib/util.php';
-    	require_once '../lib/config.php';
+	require_once '../src/util.php';
     	require_once '../lib/whiteList.php';
 	require_once '../vendor/autoload.php';
 	$dotenv = Dotenv\Dotenv::createImmutable('../../env/');
@@ -186,7 +185,7 @@
         		</section>
     		</header>
 
-		<main>
+		
   			<form action="./bookInsert.php" method="get">
         			<input type="text" name="bookKeywords" placeholder="技術キーワードを入力してください" value="<?php echo es($_GET['bookKeywords']); ?>">
         			<button type="submit"><i class="fas fa-search"></i></button>
@@ -258,7 +257,6 @@
         			?>
     			</section>
 			<!-- ページネーションここまで -->
-  		</main>
 		
 		<footer>
         		<p><small>&copy; 2019 TAICHI NAKANO</small></p>

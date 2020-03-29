@@ -22,7 +22,7 @@
 	$params = array();
 	$params['format']              = 'json';
 	$params['applicationId']       = getenv("APPLICATION_ID");
-	$params['application_secret'] = getenv("APPLICATION_SECRET");
+	$params['application_secret']  = getenv("APPLICATION_SECRET");
 	$params['affiliateId']         = getenv("AFFILIATE_ID"); //アフィリエイトの際に必要
 	$params['isbn']                = $bookNo;
 
@@ -107,8 +107,7 @@
 	try {
 		$db = new DbConnect(getenv("DB_USERNAME"), getenv("DB_PASSWORD"), getenv("DB_DATABASE"), getenv("DB_HOST"));
 		$db->createPdo();
-        	$sql = "INSERT INTO t_book(no, bookTitle, imageUrl, affiliateUrl, category, price, pages, description, register, modified_at)
-    VALUES(:no, :bookTitle, :imageUrl, :affiliateUrl, :category, :price, :pages, :description, :register, :modified_at)";
+        	$sql = "INSERT INTO t_book(no, bookTitle, imageUrl, affiliateUrl, category, price, pages, description, register, modified_at) VALUES(:no, :bookTitle, :imageUrl, :affiliateUrl, :category, :price, :pages, :description, :register, :modified_at)";
         	$db->dml($sql, [
         		[':no', $bookNo, PDO::PARAM_STR],
         		[':bookTitle', $bookTitle, PDO::PARAM_STR],

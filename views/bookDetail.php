@@ -3,11 +3,12 @@
 	session_start();
     	session_regenerate_id(true);
     
+    	require_once '../lib/util.php';
+	
 	require_once '../vendor/autoload.php';
 	$dotenv = Dotenv\Dotenv::createImmutable('../../env/');
 	$dotenv->load();
    
-    	require_once '../lib/util.php';
     
     	if(isset($_SESSION['userId']) && !empty($_SESSION['userId'])) {
         	$userId = $_SESSION['userId'];

@@ -1,17 +1,15 @@
 <?php
 	// ★XSS対策のためのHTMLエスケープ関数を定義
 	function es($data, $charset='UTF-8'){
-  		// $dataが配列のとき
-  		// is_array関数は引数が配列の時true、そうでないときfalseを返す
-  		if (is_array($data)){
+  		if (is_array($data)){//$dataが配列の時
     			// 再帰呼び出し
     			// __METHOD__はマジカル定数で現在実行している関数を呼び出す
     			// 今回であればes関数を呼び出す
     			// array_mapとの併用でどれだけ深い配列であってもhtmlspecialchars関数を
     			// データに対して実行できる
     			return array_map(__METHOD__, $data);
-  		} else {
-    			// HTMLエスケープを行う
+  		} else {//$dataが配列でないとき
+  			// HTMLエスケープを行う
     			return htmlspecialchars($data, ENT_QUOTES, $charset);
   		}
 	}
