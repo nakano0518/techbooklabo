@@ -3,3 +3,4 @@
 .env.prod
 201222_dump.sql
 .c9
+/vendor/
