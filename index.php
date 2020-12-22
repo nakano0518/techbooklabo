@@ -13,163 +13,163 @@
 	}
 
 
-	//try{
+	try{
 		/*-------------------------------------------------------------------------------------------------------------
 		キーワード検索(SQL文のWHERE句を作成)
 		-------------------------------------------------------------------------------------------------------------*/
-		// $where = "";//SQL文のWHERE句
-		// $valuePlusConnect = '';//複数キーワードを+で結合した値を格納
-		// $querySelectInput = '';//作成したクエリ文字列
-		// if(isset($_GET['searchInput'])) {
-  //      		//入力値を半角(全角)空白とカンマで分割し、検索キーワード化
-  //      		$searchInput = $_GET['searchInput'];
-  //      		$searchInput = mb_convert_kana($searchInput, "s");//全角空白を半角空白に変換
-  //      		$searchInput = preg_split("/[\s,]+/",$searchInput, -1, PREG_SPLIT_NO_EMPTY); //半角空白と,で分割し配列化
-  //      		$keywordsCount = count($searchInput);//配列数、つまり検索キーワード数
+		$where = "";//SQL文のWHERE句
+		$valuePlusConnect = '';//複数キーワードを+で結合した値を格納
+		$querySelectInput = '';//作成したクエリ文字列
+		if(isset($_GET['searchInput'])) {
+        		//入力値を半角(全角)空白とカンマで分割し、検索キーワード化
+        		$searchInput = $_GET['searchInput'];
+        		$searchInput = mb_convert_kana($searchInput, "s");//全角空白を半角空白に変換
+        		$searchInput = preg_split("/[\s,]+/",$searchInput, -1, PREG_SPLIT_NO_EMPTY); //半角空白と,で分割し配列化
+        		$keywordsCount = count($searchInput);//配列数、つまり検索キーワード数
         
-  //      		//複数キーワードを+で結合(クエリ文字列作成のため)
-  //      		foreach ($searchInput as $value) {
-  //          			$valuePlusConnect .= $value.'+';
-  //      		}
-  //    			$valuePlusConnect = substr($valuePlusConnect, 0, -1);//末尾の+削除
+        		//複数キーワードを+で結合(クエリ文字列作成のため)
+        		foreach ($searchInput as $value) {
+            			$valuePlusConnect .= $value.'+';
+        		}
+      			$valuePlusConnect = substr($valuePlusConnect, 0, -1);//末尾の+削除
         
-  //      		//上記をクエリ文字列の形式に変形
-  //      		if(isset($_GET['searchInput'])){
-  //          			$querySelectInput = 'searchInput='.$valuePlusConnect.'&';
-  //      		}else{
-  //          			$querySelectInput = '';
-  //      		}	
+        		//上記をクエリ文字列の形式に変形
+        		if(isset($_GET['searchInput'])){
+            			$querySelectInput = 'searchInput='.$valuePlusConnect.'&';
+        		}else{
+            			$querySelectInput = '';
+        		}	
         
         
-  //      		//検索キーワードをforで展開しWHERE句を作成
-  //      		if(!empty($_GET['searchInput'])){
-		// 		$where = ' WHERE';
-  //      			for($i=0; $i<$keywordsCount; $i++) {
-  //          				$searchInput[$i] = es($searchInput[$i]);!
-  //          				$where .= ' bookTitle like'.'\''.'%'.$searchInput[$i].'%'.'\''.'OR';
-  //      			}
-  //      			for($j=0; $j<$keywordsCount; $j++) {
-  //          				$searchInput[$j] = es($searchInput[$j]);
-  //          				$where .= ' category like'.'\''.'%'.$searchInput[$j].'%'.'\'';
-  //          				if($j<$keywordsCount-1) {
-  //              				$where .= 'OR';
-  //          				}
-  //      			}
-		// 	}
+        		//検索キーワードをforで展開しWHERE句を作成
+        		if(!empty($_GET['searchInput'])){
+				$where = ' WHERE';
+        			for($i=0; $i<$keywordsCount; $i++) {
+            				$searchInput[$i] = es($searchInput[$i]);!
+            				$where .= ' bookTitle like'.'\''.'%'.$searchInput[$i].'%'.'\''.'OR';
+        			}
+        			for($j=0; $j<$keywordsCount; $j++) {
+            				$searchInput[$j] = es($searchInput[$j]);
+            				$where .= ' category like'.'\''.'%'.$searchInput[$j].'%'.'\'';
+            				if($j<$keywordsCount-1) {
+                				$where .= 'OR';
+            				}
+        			}
+			}
         
-  //  		}
+    		}
 		
 		/*----------------------------------------------------------------------
 		並べ替え(SQL文のORDER BY句の作成)
 		----------------------------------------------------------------------*/
-		// $counter = '';//COUNT()の設定
-		// $join = '';//テーブル結合句
-  //  		$orderBy = ' ORDER BY t_book.created_at DESC';//ORDER BY句
-  //  		if(isset($_GET['sort'])) {
-  //          		$sort = es($_GET['sort']);
-  //          		switch($sort) {
-  //              		case 1: 
-  //                  			$orderBy = ' ORDER BY price ASC';//価格昇順
-  //                  			break;
-  //              		case 2:
-  //                  			$orderBy = ' ORDER BY price DESC';//価格降順
-  //                  			break;
-  //              		case 3:
-  //                  			$orderBy = ' ORDER BY pages ASC';//ページ昇順
-  //                  			break;
-  //              		case 4:
-  //                  			$orderBy = ' ORDER BY pages DESC';//ページ降順
-		// 			break;
-		// 		case 5:
-		// 			$counter = ', COUNT(t_good.no) AS kensu';
-		// 			$join = ' LEFT OUTER JOIN t_good ON t_good.no = t_book.no';
-		// 			$orderBy = ' GROUP BY t_book.no ORDER BY kensu ASC, t_book.created_at DESC';//お気に入り数の昇順
-		// 			break;
+		$counter = '';//COUNT()の設定
+		$join = '';//テーブル結合句
+    		$orderBy = ' ORDER BY t_book.created_at DESC';//ORDER BY句
+    		if(isset($_GET['sort'])) {
+            		$sort = es($_GET['sort']);
+            		switch($sort) {
+                		case 1: 
+                    			$orderBy = ' ORDER BY price ASC';//価格昇順
+                    			break;
+                		case 2:
+                    			$orderBy = ' ORDER BY price DESC';//価格降順
+                    			break;
+                		case 3:
+                    			$orderBy = ' ORDER BY pages ASC';//ページ昇順
+                    			break;
+                		case 4:
+                    			$orderBy = ' ORDER BY pages DESC';//ページ降順
+					break;
+				case 5:
+					$counter = ', COUNT(t_good.no) AS kensu';
+					$join = ' LEFT OUTER JOIN t_good ON t_good.no = t_book.no';
+					$orderBy = ' GROUP BY t_book.no ORDER BY kensu ASC, t_book.created_at DESC';//お気に入り数の昇順
+					break;
 
-		// 		case 6:
-		// 			$counter = ', COUNT(t_good.no) AS kensu';
-		// 			$join = ' LEFT OUTER JOIN t_good ON t_good.no = t_book.no';
-		// 			$orderBy = ' GROUP BY t_book.no ORDER BY kensu DESC, t_book.created_at DESC';//お気に入り数の降順
-		// 			break;
-		// 		case 7:
-		// 			$counter = ', COUNT(t_review.no) AS kensu';
-		// 			$join = ' LEFT OUTER JOIN t_review ON t_review.no = t_book.no';
-		// 			$orderBy = ' GROUP BY t_book.no ORDER BY kensu ASC, t_book.created_at DESC';//レビュー数の昇順
-		// 			break;
-		// 		case 8:					
-		// 			$counter = ', COUNT(t_review.no) AS kensu';
-		// 			$join = ' LEFT OUTER JOIN t_review ON t_review.no = t_book.no';
-		// 			$orderBy = ' GROUP BY t_book.no ORDER BY kensu DESC, t_book.created_at DESC';//レビュー数の降順
-		// 			break;
-		// 		default:
-		// 			$orderBy = ' ORDER BY t_book.created_at DESC';
-		// 			break;
-  //          		}
-  //  		}
-  //  		$querySort = '';//クエリ文字列の作成
-  //  		if(isset($_GET['sort'])) {
-  //      		$querySort = 'sort='.$sort.'&';
-  //  		}else {
-  //      		$querySort = '';
-  //  		}
+				case 6:
+					$counter = ', COUNT(t_good.no) AS kensu';
+					$join = ' LEFT OUTER JOIN t_good ON t_good.no = t_book.no';
+					$orderBy = ' GROUP BY t_book.no ORDER BY kensu DESC, t_book.created_at DESC';//お気に入り数の降順
+					break;
+				case 7:
+					$counter = ', COUNT(t_review.no) AS kensu';
+					$join = ' LEFT OUTER JOIN t_review ON t_review.no = t_book.no';
+					$orderBy = ' GROUP BY t_book.no ORDER BY kensu ASC, t_book.created_at DESC';//レビュー数の昇順
+					break;
+				case 8:					
+					$counter = ', COUNT(t_review.no) AS kensu';
+					$join = ' LEFT OUTER JOIN t_review ON t_review.no = t_book.no';
+					$orderBy = ' GROUP BY t_book.no ORDER BY kensu DESC, t_book.created_at DESC';//レビュー数の降順
+					break;
+				default:
+					$orderBy = ' ORDER BY t_book.created_at DESC';
+					break;
+            		}
+    		}
+    		$querySort = '';//クエリ文字列の作成
+    		if(isset($_GET['sort'])) {
+        		$querySort = 'sort='.$sort.'&';
+    		}else {
+        		$querySort = '';
+    		}
 		
 		/*----------------------------------------------------------------------
 		ページネーション 
 		----------------------------------------------------------------------*/
-	// 	//1ページあたり何冊表示するか
-	// 	define('max_item', 12);
-	// 	//必要なページ数を求める
-	// 	$db = new DbConnect(getenv("DB_USERNAME"), getenv("DB_PASSWORD"), getenv("DB_DATABASE"), getenv("DB_HOST"));
-	// 	$db->createPdo();
-	// 	$sql = 'SELECT COUNT(*) AS count FROM t_book'.$where;
-	// 	$total_count = $db->selectfetch($sql);	
-	// 	$pages = ceil($total_count['count'] / max_item);
+		//1ページあたり何冊表示するか
+		define('max_item', 12);
+		//必要なページ数を求める
+		$db = new DbConnect(getenv("DB_USERNAME"), getenv("DB_PASSWORD"), getenv("DB_DATABASE"), getenv("DB_HOST"));
+		$db->createPdo();
+		$sql = 'SELECT COUNT(*) AS count FROM t_book'.$where;
+		$total_count = $db->selectfetch($sql);	
+		$pages = ceil($total_count['count'] / max_item);
 
-	// 	//現在いるページ番号の取得
-	// 	$now = 0;
-	// 	if(!isset($_GET['page_id'])||empty($_GET['page_id'])){
- //   			$now = 1;
-	// 	}else{
- //   			$now = es($_GET['page_id']);
-	// 	}
+		//現在いるページ番号の取得
+		$now = 0;
+		if(!isset($_GET['page_id'])||empty($_GET['page_id'])){
+    			$now = 1;
+		}else{
+    			$now = es($_GET['page_id']);
+		}
 
-	// 	//表示する本のコンテンツを取得するSQL
-	// 	$sql = 'SELECT t_book.bookTitle, t_book.imageUrl, t_book.no, t_book.created_at'.$counter.' FROM t_book'.$join.$where.$orderBy.' LIMIT :start, :max';
+		//表示する本のコンテンツを取得するSQL
+		$sql = 'SELECT t_book.bookTitle, t_book.imageUrl, t_book.no, t_book.created_at'.$counter.' FROM t_book'.$join.$where.$orderBy.' LIMIT :start, :max';
 		
-	// 	if($now ==1){
- // 			//1ページ目の処理
-	// 		$data = $db->selectfetchAll($sql,[
- //   				[':start', $now-1, PDO::PARAM_INT],
- //   				[':max', max_item, PDO::PARAM_INT]
-	// 		]);
-	// 	}else{
- //   			//1ページ目以外の処理	
-	// 		$data = $db->selectfetchAll($sql,[
- //   				[':start', ($now-1) * max_item, PDO::PARAM_INT],
- //   				[':max', max_item, PDO::PARAM_INT]
-	// 		]);
-	// 	}
-	// }catch(Exception $e) {
-	// 	echo '<span class="error">エラーがありました。</span><br>';
- //       	echo $e->getMessage().'<br>';
-	// }
+		if($now ==1){
+  			//1ページ目の処理
+			$data = $db->selectfetchAll($sql,[
+    				[':start', $now-1, PDO::PARAM_INT],
+    				[':max', max_item, PDO::PARAM_INT]
+			]);
+		}else{
+    			//1ページ目以外の処理	
+			$data = $db->selectfetchAll($sql,[
+    				[':start', ($now-1) * max_item, PDO::PARAM_INT],
+    				[':max', max_item, PDO::PARAM_INT]
+			]);
+		}
+	}catch(Exception $e) {
+		echo '<span class="error">エラーがありました。</span><br>';
+        	echo $e->getMessage().'<br>';
+	}
 ?>
 
 <?php
 	/*----------------------------------------------------------------------
     	モバイル用ドロワーメニューに表示するユーザー名の取得 
 	----------------------------------------------------------------------*/
-	// if(isset($_SESSION['userId'])||!empty($_SESSION['userId'])){
- //   		try{
-	// 		$db = new DbConnect(getenv("DB_USERNAME"), getenv("DB_PASSWORD"), getenv("DB_DATABASE"), getenv("DB_HOST"));
- //   			$db->createPdo();
- //       		$sql = "SELECT name FROM t_users WHERE userId = :userId";
- //       		$name = $db->selectfetch($sql, [[":userId", $userId, PDO::PARAM_STR]]);
- // 		}catch(Exception $e){
-	// 		echo '<span class="error">エラーがありました。</span><br>';
- //       		echo $e->getMessage().'<br>';
- //   		}
-	// }
+	if(isset($_SESSION['userId'])||!empty($_SESSION['userId'])){
+    		try{
+			$db = new DbConnect(getenv("DB_USERNAME"), getenv("DB_PASSWORD"), getenv("DB_DATABASE"), getenv("DB_HOST"));
+    			$db->createPdo();
+        		$sql = "SELECT name FROM t_users WHERE userId = :userId";
+        		$name = $db->selectfetch($sql, [[":userId", $userId, PDO::PARAM_STR]]);
+  		}catch(Exception $e){
+			echo '<span class="error">エラーがありました。</span><br>';
+        		echo $e->getMessage().'<br>';
+    		}
+	}
 	
 ?>
 
