@@ -22,6 +22,8 @@ class DbConnect{
 	//PDOインスタンス作成および初期設定
 	public function createPdo() {
 		echo 'a1';
+		echo $this->user;
+		echo $this->dns;
 		$this->pdo = new PDO($this->dsn, $this->user, $this->dbpassword);
 		echo 'a2';
 		$this->pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);//プリペアドステートメントのエミュレーション無効
