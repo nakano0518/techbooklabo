@@ -1,5 +1,5 @@
 <?php
-    echo realpath(__DIR__.'/../');
+    echo realpath(__DIR__.'/../').'/vendor/autoload.php';
     //require_once realpath(__DIR__.'/../').'/vendor/autoload.php';
     //$dotenv = Dotenv\Dotenv::createImmutable(realpath(__DIR__.'/../').'/');
     //$dotenv->load();
