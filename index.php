@@ -1,16 +1,16 @@
-// <?php
-// 	session_start();
-// 	session_regenerate_id(true);
+<?php
+	session_start();
+	session_regenerate_id(true);
 
 
-// 	require_once __DIR__.'/config/envLoad.php';
-// 	require_once __DIR__.'/lib/util.php';	
+	require_once __DIR__.'/config/envLoad.php';
+	require_once __DIR__.'/lib/util.php';	
 	
 	
 	
-// 	if(isset($_SESSION['userId'])) {
-// 		$userId = $_SESSION['userId'];
-// 	}	
+	if(isset($_SESSION['userId'])) {
+		$userId = $_SESSION['userId'];
+	}	
 
 // 	try{
 // 		/*-------------------------------------------------------------------------------------------------------------
