@@ -2,7 +2,7 @@
 	session_start();
 	session_regenerate_id(true);
 
-
+	echo  __DIR__.'/config/envLoad.php';
 	require_once __DIR__.'/config/envLoad.php';
 	require_once __DIR__.'/lib/util.php';	
 	
