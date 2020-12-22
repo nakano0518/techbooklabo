@@ -124,6 +124,9 @@
 		//必要なページ数を求める
 		echo 'D';
 		$db = new DbConnect(getenv("DB_USERNAME"), getenv("DB_PASSWORD"), getenv("DB_DATABASE"), getenv("DB_HOST"));
+		echo getenv("DB_USERNAME");
+		echo getenv("DB_DATABASE");
+		echo getenv("DB_HOST");
 		echo 'E';
 		$db->createPdo();
 		echo 'F';
