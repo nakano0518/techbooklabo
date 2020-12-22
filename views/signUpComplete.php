@@ -2,12 +2,10 @@
 	session_start();
 	session_regenerate_id(true);
 
+	require_once '../config/envLoad.php';
 	require_once "../lib/validation.php";
 	require_once "../lib/util.php";
 	
-	require_once '../vendor/autoload.php';
-	$dotenv = Dotenv\Dotenv::createImmutable('../../env/');
-	$dotenv->load();
 
 	//エラー格納用変数の設定
 	$errors = array();

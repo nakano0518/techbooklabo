@@ -1,11 +1,10 @@
 <?php
 	session_start();
+	
+	require_once '../config/envLoad.php';
 	require_once "../lib/util.php";
 
-	require_once '../vendor/autoload.php';
-	$dotenv = Dotenv\Dotenv::createImmutable('../../env/');
-	$dotenv->load();
-
+	
 	if(isset($_POST['bookNo']) && !empty($_POST['bookNo']) && isset($_POST['userId']) && !empty($_POST['userId'])){
   		$bookNo = $_POST['bookNo'];
   		$userId = $_POST['userId'];
@@ -19,7 +18,7 @@
 	}
 
 	//ログインユーザーのお気に入りの有無(データが存在するか)
-    	try {
+    try {
 		$db = new DbConnect(getenv("DB_USERNAME"), getenv("DB_PASSWORD"), getenv("DB_DATABASE"), getenv("DB_HOST"));
 		$db->createPdo();
         	$sql = "SELECT delete_flg FROM t_good WHERE userId = :userId AND no = :bookNo";
@@ -27,16 +26,16 @@
         		[':userId', $userId, PDO::PARAM_STR],
         		[':bookNo', $bookNo, PDO::PARAM_STR]
 		]);
-        	$starData = $starData[0]['delete_flg'];
+        $starData = $starData[0]['delete_flg'];
 	}catch(Exception $e){
-    		echo $e->getMessage();
+    	echo $e->getMessage();
 	}
 
 
 	if($starData === null) {
-    		//☆をクリックしたとき
-    		//データベースにデータが存在しない⇒データをINSERTしておく
-    		try{
+		//☆をクリックしたとき
+		//データベースにデータが存在しない⇒データをINSERTしておく
+		try{
 			$db = new DbConnect(getenv("DB_USERNAME"), getenv("DB_PASSWORD"), getenv("DB_DATABASE"), getenv("DB_HOST"));
 			$db->createPdo();
         		$sql = "INSERT INTO t_good(userId, no, delete_flg) VALUES(:userId, :bookNo, :delete_flg)";
@@ -50,9 +49,9 @@
 		}    
 	}else {
     
-    		//★をクリックしたとき
-    		//データベースにデータが存在する⇒データをDELETEしておく
-    		try{
+		//★をクリックしたとき
+		//データベースにデータが存在する⇒データをDELETEしておく
+		try{
 			$db = new DbConnect(getenv("DB_USERNAME"), getenv("DB_PASSWORD"), getenv("DB_DATABASE"), getenv("DB_HOST"));
 			$db->createPdo();
 			$sql = "DELETE FROM t_good WHERE userId = :userId AND no = :bookNo AND delete_flg = :delete_flg";
@@ -68,18 +67,17 @@
 
 	//お気に入りの総数の取得
 	try{
-			$db = new DbConnect(getenv("DB_USERNAME"), getenv("DB_PASSWORD"), getenv("DB_DATABASE"), getenv("DB_HOST"));
-			$db->createPdo();
-        		$sql = "SELECT COUNT(*) AS count FROM t_good WHERE no = :bookNo";
-			$totalStarData = $db->selectfetchAll($sql,[':bookNo', $bookNo, PDO::PARAM_STR]);
-        		$totalStarData = $totalStarData[0]['count'];
+		$db = new DbConnect(getenv("DB_USERNAME"), getenv("DB_PASSWORD"), getenv("DB_DATABASE"), getenv("DB_HOST"));
+		$db->createPdo();
+    	$sql = "SELECT COUNT(*) AS count FROM t_good WHERE no = :bookNo";
+		$totalStarData = $db->selectfetchAll($sql,[':bookNo', $bookNo, PDO::PARAM_STR]);
+    	$totalStarData = $totalStarData[0]['count'];
 	}catch(Exception $e){
-    		echo $e->getMessage();
+    	echo $e->getMessage();
 	}
 
 
 	echo $starData.','.$totalStarData;
 	exit;
-?>
 
 

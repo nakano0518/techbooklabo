@@ -1,12 +1,11 @@
 <?php
-	session_start();
+		session_start();
     	session_regenerate_id(true);
 
+
+		require_once '../config/envLoad.php';
     	require_once '../lib/util.php';
 
-	require_once '../vendor/autoload.php';
-	$dotenv = Dotenv\Dotenv::createImmutable('../../env/');
-	$dotenv->load();
 
     	if(!isset($_SESSION['userId'])){
         	$goBackURL = "http://".$_SERVER['HTTP_HOST'];
@@ -63,30 +62,26 @@
 ?>
 
 <?php
-	/*----------------------------------------------------------------------
-    	モバイル用ドロワーメニューに表示するユーザー名の取得 
-	----------------------------------------------------------------------*/
-	if(isset($_SESSION['userId'])||!empty($_SESSION['userId'])){
-    	try{
-		$db = new DbConnect(getenv("DB_USERNAME"), getenv("DB_PASSWORD"), getenv("DB_DATABASE"), getenv("DB_HOST"));
-		$db->createPdo();
-        	$sql = "SELECT name FROM t_users WHERE userId = :userId";
-		$name = $db->selectfetch($sql,[[':userId', $userId, PDO::PARAM_STR]]);
-    	}catch(Exception $e){
-        	echo '<span class="error">エラーがありました。</span><br>';
-        	echo $e->getMessage().'<br>';
-    	}
-}
+		/*----------------------------------------------------------------------
+	    	モバイル用ドロワーメニューに表示するユーザー名の取得 
+		----------------------------------------------------------------------*/
+		if(isset($_SESSION['userId'])||!empty($_SESSION['userId'])){
+	    	try{
+			$db = new DbConnect(getenv("DB_USERNAME"), getenv("DB_PASSWORD"), getenv("DB_DATABASE"), getenv("DB_HOST"));
+			$db->createPdo();
+	        	$sql = "SELECT name FROM t_users WHERE userId = :userId";
+			$name = $db->selectfetch($sql,[[':userId', $userId, PDO::PARAM_STR]]);
+	    	}catch(Exception $e){
+	        	echo '<span class="error">エラーがありました。</span><br>';
+	        	echo $e->getMessage().'<br>';
+	    	}
+		}
 ?>
 
 <?php
 	/*---------------------------------------------------------------------
 	S3から画像の読み取り
 	---------------------------------------------------------------------*/
-    	require_once '../vendor/autoload.php';
-    	$dotenv = Dotenv\Dotenv::createImmutable('../../env/');
-    	$dotenv->load();
-
 	$s3 = new Aws\S3\S3Client(array(
     		'version' => 'latest',
     		'credwntials' => array(

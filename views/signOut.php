@@ -11,4 +11,3 @@
 	}
 	header('Location:'.$goBackURL.'/index.php');
 	exit;
-?>

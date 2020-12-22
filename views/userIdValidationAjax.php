@@ -1,11 +1,8 @@
 <?php
 	session_start();
-	
-	require_once "../lib/util.php";
 
-	require_once '../vendor/autoload.php';
-	$dotenv = Dotenv\Dotenv::createImmutable('../../env/');
-	$dotenv->load();
+	require_once '../config/envLoad.php';	
+	require_once "../lib/util.php";
 
 
 	if(isset($_POST['val'])){

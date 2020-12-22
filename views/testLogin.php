@@ -1,8 +1,8 @@
 <?php
 	session_start();
     	
-        //テストログイン用ユーザー
-    	$userId = "testUser1";
+    //テストログイン用ユーザー
+	$userId = "testUser1";
 	
 	$_SESSION['userId'] = $userId;
     	

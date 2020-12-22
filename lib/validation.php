@@ -1,5 +1,7 @@
 <?php
 
+require_once '../config/envLoad.php';
+
 /* ---------------------------------------------------------------------------
 validation用の関数を自分で作成(ライブラリ化)
 --------------------------------------------------------------------------- */
@@ -49,26 +51,25 @@ function confirmPassword($newEmail, $confirmEmail) {
 
 //新規登録画面でユーザーIDに重複があった場合、エラーメッセージを取得する
 function isDuplicateUserId($newUserId){
-  $user = 'nakano';
-	$dbpassword = '3114yashi';
-	$dbName = 'BookReview';
-	$host = 'techbookreview.ccbw4hq0h1r9.ap-northeast-1.rds.amazonaws.com';
-  $dsn = "mysql:host={$host};dbname={$dbName};charset=utf8";
-  //PDOクラスのインスタンスを作成し接続
-  $pdo = new PDO($dsn, $user, $dbpassword);
-  // プリペアドステートメントのエミュレーションを無効にする
-  $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-  // 例外がスローされる設定にする
-  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//   $user = 'nakano';
+// 	$dbpassword = '3114yashi';
+// 	$dbName = 'BookReview';
+// 	$host = 'techbookreview.ccbw4hq0h1r9.ap-northeast-1.rds.amazonaws.com';
+//   $dsn = "mysql:host={$host};dbname={$dbName};charset=utf8";
+//   //PDOクラスのインスタンスを作成し接続
+//   $pdo = new PDO($dsn, $user, $dbpassword);
+//   // プリペアドステートメントのエミュレーションを無効にする
+//   $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+//   // 例外がスローされる設定にする
+//   $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  $db = new DbConnect(getenv("DB_USERNAME"), getenv("DB_PASSWORD"), getenv("DB_DATABASE"), getenv("DB_HOST"));
+  $db->createPdo();
   $sql = 'SELECT userId FROM t_users WHERE userId = :userId';
-  $stm = $pdo->prepare($sql);
-  $stm->bindValue(':userId', $newUserId, PDO::PARAM_STR);  
-  $stm->execute();
-  $userIdData = $stm->fetchAll(PDO::FETCH_ASSOC);
-
+  $userIdData = $db->selectfetch($sql, [[":userId", $userId, PDO::PARAM_STR]]);
+  
   if($newUserId === '') {
     return 0;
-  }else if($userIdData[0]['userId'] !== $newUserId){
+  }else if($userIdData['userId'] !== $newUserId){
     return false;
   }else{
     return true;

@@ -1,13 +1,10 @@
 
 <?php
-	session_start();
+		session_start();
     	session_regenerate_id(true);
-    
+    	
+    	require_once '../config/envLoad.php';
     	require_once '../lib/util.php';
-	
-	require_once '../vendor/autoload.php';
-	$dotenv = Dotenv\Dotenv::createImmutable('../../env/');
-	$dotenv->load();
    
     
     	if(isset($_SESSION['userId']) && !empty($_SESSION['userId'])) {
@@ -29,7 +26,7 @@
         	$sql = "SELECT * FROM t_book WHERE no = :bookNo";
 		$data = $db->selectfetch($sql, [[":bookNo", $bookNo, PDO::PARAM_STR]]);
         	if(!$data) {
-           		throw new Exception('データベースエラー');
+          		throw new Exception('データベースエラー');
         	}
 		//本の各種情報を変数に格納
         	$category = es($data['category']);
@@ -54,7 +51,7 @@
     			$db = new DbConnect(getenv("DB_USERNAME"), getenv("DB_PASSWORD"), getenv("DB_DATABASE"), getenv("DB_HOST"));
     			$db->createPdo();
         		$sql = "SELECT delete_flg FROM t_good WHERE userId = :userId AND no = :bookNo";
-			$firstStarState = $db->selectfetch($sql, [[":userId", $userId, PDO::PARAM_STR], [":bookNo", $bookNo, PDO::PARAM_STR]]);
+				$firstStarState = $db->selectfetch($sql, [[":userId", $userId, PDO::PARAM_STR], [":bookNo", $bookNo, PDO::PARAM_STR]]);
     		}catch(Exception $e){
         		echo '<span class="error">エラーがありました。</span><br>';
         		echo $e->getMessage();
@@ -114,9 +111,6 @@
 /* ----------------------------------------------------------------------
 S3から画像の読み取りのためのs3インスタンスの生成
 -----------------------------------------------------------------------*/
-	require_once '../vendor/autoload.php';
-	$dotenv = Dotenv\Dotenv::createImmutable('../../env/');
-	$dotenv->load();
 	$s3 = new Aws\S3\S3Client(array(
 		'version' => 'latest',
 		'credential' => array(
@@ -161,10 +155,10 @@ S3から画像の読み取りのためのs3インスタンスの生成
                             				<li><a href="../index.php">ホーム</a></li>
                             				<li><a href="./signUp.php">新規登録</a></li>
                             				<li><a href="./signIn.php">ログイン</a></li>
-                       		 		</ul>
+                      		 		</ul>
                     			</div>
                 		<?php endif; ?>
-           		 </div>
+          		 </div>
             		<div class="cancelDrawerLayer">
             		</div>
         	</div>
@@ -181,14 +175,14 @@ S3から画像の読み取りのためのs3インスタンスの生成
         			<div class="headerright">
             				<i class="fas fa-bars"></i>
             				<div class="menus">
-               					<ul>
+              					<ul>
                     					<li>
 								<a href="./signUp.php">新規登録</a>
 							</li>
                     					<li class="<?= $userId ? 'invisible': ''; ?>">
                         					<a href="./signIn.php" class="<?= $userId ? 'invisible': ''; ?>">ログイン</a>
-                   	 				</li>
-                   					<li class="<?= $userId ? 'visible': 'invisible'; ?>">
+                  	 				</li>
+                  					<li class="<?= $userId ? 'visible': 'invisible'; ?>">
                         					<a href="./mypage.php" class="<?= $userId ? 'visible': 'invisible'; ?>">マイページ</a>
                     					</li>
                     					<li class="<?= $userId ? 'visible': 'invisible'; ?>">
@@ -202,11 +196,11 @@ S3から画像の読み取りのためのs3インスタンスの生成
  
 		<main>
 			<section class="bookDetail">
-       				<h2 class="titleSection">
+      				<h2 class="titleSection">
                 			<p class="category"><?php echo !empty($category)? $category : "その他"; ?></span><br>
                 			<p class="title"><?php echo !empty($title)? $title : "タイトル不明"; ?></span>
-           			</h2>
-           			<section class="post" data-id="<?php echo es($userId); ?>" data-no="<?php echo es($no); ?>">
+          			</h2>
+          			<section class="post" data-id="<?php echo es($userId); ?>" data-no="<?php echo es($no); ?>">
 		    		 	<?php if(isset($userId) && !empty($userId)): ?>
                     				<!-- 円 -->
                     				<svg width="60" height="60" viewBox="0 0 350 60">
@@ -227,7 +221,7 @@ S3から画像の読み取りのためのs3インスタンスの生成
 				</section>
             			<a href="<?php echo $affiliateUrl;?>"><img class="book" src="<?php echo $imageUrl; ?>" alt="本の画像"></a><br>
             			<p class="description"><?php echo $description; ?><span class="no">(ISBN-13：<?php echo $no; ?>)</span></p>
-           			<p class="price"><span><?php echo $price == 0? 'Unknown price':'￥'.number_format($price); ?></span></p>
+          			<p class="price"><span><?php echo $price == 0? 'Unknown price':'￥'.number_format($price); ?></span></p>
 	    			<p class="pages"><span>/<?php echo $pages==0? 'Unknown ':$pages; ?>pages</span></p>
         		</section>
         		<section class="reviewSection">
@@ -238,7 +232,7 @@ S3から画像の読み取りのためのs3インスタンスの生成
                     					<input type="hidden" name="bookNo" value="<?php echo es($bookNo); ?>">
                     					<textarea name="reviewContent" placeholder='<?php echo "・初学者向けか、実務寄りの内容か&#13;&#10;・わかりやすさ、網羅性&#13;&#10;・その他気づいた事"; ?>' value="utf-8"><?php echo es($reviewContent); ?></textarea><br>
                     					<input type="submit" value="投稿する">
-               					</form>
+              					</form>
             				</div>
 				<?php endif;?>
             			<div class="reviewList">
@@ -247,7 +241,7 @@ S3から画像の読み取りのためのs3インスタンスの生成
                 				<?php foreach($reviewDatas as $reviewData) : ?>
                 					<div class="reviewFlexContainer">
                     						<div class="userInfo">
-                       	 						<?php
+                      	 						<?php
 										/* ---------------------------------------------------------
 										レビューおよびユーザーDBから取得したデータを変数に格納
 										----------------------------------------------------------*/
@@ -270,10 +264,10 @@ S3から画像の読み取りのためのs3インスタンスの生成
                     						</div>
                     						<div class="reviewContent">
                         						<p><?php echo es($reviewData['reviewContent']); ?></p>
-                   						</div>
+                  						</div>
                 					</div>
                 				<?php endforeach; ?>
-               				<?php else: ?>
+              				<?php else: ?>
                     				<p class="noReview">まだレビューはありません</p>
                 			<?php endif; ?>
             			</div>
@@ -281,7 +275,7 @@ S3から画像の読み取りのためのs3インスタンスの生成
 		</main>
     		
 		<footer>
-       	 		<p><small>&copy; 2019 TAICHI NAKANO</small></p>
+      	 		<p><small>&copy; 2019 TAICHI NAKANO</small></p>
     		</footer>
     
 		<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>

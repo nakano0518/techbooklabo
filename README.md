@@ -16,7 +16,7 @@
   - HTML/CSSを用いて作成し、レスポンシブデザイン化
   - JavaScript(jQuery)を用いたAjaxによるUX/UIの向上
 - ### サーバーサイド
-  ※下記機能を勉強のためフレームワークを使用せず素のPHPを用いて開発
+  ※下記機能をフレームワークを使用せず素のPHPを用いて開発
   - 書籍の検索機能(キーワード検索、ソート機能)
   - 書籍の登録機能(楽天BooksAPI を利用)
   - ページネーション機能
@@ -100,21 +100,6 @@
 <img width="600" alt="techbooklabo_mypageEdit-profile" src="https://user-images.githubusercontent.com/54522567/77852109-c4376380-7217-11ea-8be0-bf484e9b68de.JPG">　　
 
 <img width="600" alt="techbooklabo_mypageEdit-good-review" src="https://user-images.githubusercontent.com/54522567/77852112-c699bd80-7217-11ea-8775-2a6ca4f06ee6.JPG">
-
-- ### 学習開始半年間で読んだ書籍　　　　 
-  - 随時、レビューをアップ予定！  
-
-<img width="600" alt="books_finishing_to_read_for_6_month" src="https://user-images.githubusercontent.com/54522567/77849470-c47b3300-7206-11ea-9bf2-35bdddad9be1.JPG">　　
-
-- ### Progate   
-　　 
-<img width="600" alt="progate_level_for_6_month" src="https://user-images.githubusercontent.com/54522567/77849479-d3fa7c00-7206-11ea-8472-d7d3fdbdf8bf.JPG">
-<img width="200" alt="progate_course_for_6_month" src="https://user-images.githubusercontent.com/54522567/77849482-d78e0300-7206-11ea-9029-332de29580a0.JPG">　　
-
-- ### ドットインストール   
-　　 
-<img width="600" alt="dotinstall_for_6_month" src="https://user-images.githubusercontent.com/54522567/77849484-da88f380-7206-11ea-81e1-0f1d92bbdc9a.JPG">　　
-
 
 
 

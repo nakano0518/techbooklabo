@@ -1,23 +1,21 @@
 <?php
-	session_start();
+		session_start();
     	session_regenerate_id(true);
     
-	require_once '../lib/util.php';
+    	require_once '../config/envLoad.php';
+		require_once '../lib/util.php';
     
-	require_once '../vendor/autoload.php';
-    	$dotenv = Dotenv\Dotenv::createImmutable('../../env/');
-    	$dotenv->load();
     
-	if(!isset($_SESSION['userId'])){
-    		$goBackURL = 'https://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
-		if($_SERVER['HTTPS'] !== null){
-   			$goBackURL = 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
-		} 
-        	header('Location:'.$goBackURL.'/signIn.php');
-		exit;
-    	}else {
-        	$userId = $_SESSION['userId'];
-    	}
+		if(!isset($_SESSION['userId'])){
+	    		$goBackURL = 'https://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
+			if($_SERVER['HTTPS'] !== null){
+	   			$goBackURL = 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
+			} 
+	        	header('Location:'.$goBackURL.'/signIn.php');
+			exit;
+	    	}else {
+	        	$userId = $_SESSION['userId'];
+	    	}
 ?>
 
 <?php

@@ -19,7 +19,7 @@
     		<meta name="viewport" content="width=device-width, initial-scale=1.0">
     		<meta http-equiv="X-UA-Compatible" content="ie=edge">  
     		<link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Sawarabi+Gothic&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
     		<link rel="stylesheet" href="../css/signIn.css">
     		<title>TechBookLabo</title>
 	</head>
@@ -60,16 +60,16 @@
             		</div>
         	</div>
     
-		<?php
-    			//エラー用セッションを空に
-			$_SESSION['errors']['userIdEmpty'] = '';
-			$_SESSION['errors']['passwordEmpty'] = '';
-			$_SESSION['errors']['userIdPasswordError'] = '';
-			$_SESSION['errors']['dbError'] = '';
-			
-
-			//CSRF対策:セッションにトークンを保存しておく
-    			$_SESSION['csrf_token'] = $csrf_token;
-    		?>
+			<?php
+				//エラー用セッションを空に
+				$_SESSION['errors']['userIdEmpty'] = '';
+				$_SESSION['errors']['passwordEmpty'] = '';
+				$_SESSION['errors']['userIdPasswordError'] = '';
+				$_SESSION['errors']['dbError'] = '';
+				
+	
+				//CSRF対策:セッションにトークンを保存しておく
+	    			$_SESSION['csrf_token'] = $csrf_token;
+	    	?>
 	</body>
 </html>
