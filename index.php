@@ -17,6 +17,7 @@
 		/*-------------------------------------------------------------------------------------------------------------
 		キーワード検索(SQL文のWHERE句を作成)
 		-------------------------------------------------------------------------------------------------------------*/
+		echo 'A';
 		$where = "";//SQL文のWHERE句
 		$valuePlusConnect = '';//複数キーワードを+で結合した値を格納
 		$querySelectInput = '';//作成したクエリ文字列
@@ -62,6 +63,7 @@
 		/*----------------------------------------------------------------------
 		並べ替え(SQL文のORDER BY句の作成)
 		----------------------------------------------------------------------*/
+		echo 'B';
 		$counter = '';//COUNT()の設定
 		$join = '';//テーブル結合句
     		$orderBy = ' ORDER BY t_book.created_at DESC';//ORDER BY句
@@ -116,13 +118,18 @@
 		/*----------------------------------------------------------------------
 		ページネーション 
 		----------------------------------------------------------------------*/
+		echo 'C';
 		//1ページあたり何冊表示するか
 		define('max_item', 12);
 		//必要なページ数を求める
+		echo 'D';
 		$db = new DbConnect(getenv("DB_USERNAME"), getenv("DB_PASSWORD"), getenv("DB_DATABASE"), getenv("DB_HOST"));
+		echo 'E';
 		$db->createPdo();
+		echo 'F';
 		$sql = 'SELECT COUNT(*) AS count FROM t_book'.$where;
 		$total_count = $db->selectfetch($sql);	
+		echo 'G';
 		$pages = ceil($total_count['count'] / max_item);
 
 		//現在いるページ番号の取得
@@ -135,7 +142,7 @@
 
 		//表示する本のコンテンツを取得するSQL
 		$sql = 'SELECT t_book.bookTitle, t_book.imageUrl, t_book.no, t_book.created_at'.$counter.' FROM t_book'.$join.$where.$orderBy.' LIMIT :start, :max';
-		
+		echo 'H';
 		if($now ==1){
   			//1ページ目の処理
 			$data = $db->selectfetchAll($sql,[
