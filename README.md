@@ -1,6 +1,6 @@
 ## 本サイトの概要
 
-###### URL： https://www.techbooklabo.com
+###### URL： ~~https://www.techbooklabo.com~~
 ※ログイン画面の「テストログイン」で１クリックでログインできます。
 
 
