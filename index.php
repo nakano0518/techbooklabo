@@ -125,7 +125,8 @@
 		echo 'D';
 		$db = new DbConnect(getenv("DB_USERNAME"), getenv("DB_PASSWORD"), getenv("DB_DATABASE"), getenv("DB_HOST"));
 		$url = parse_url(getenv['DATABASE_URL']);
-		var_dump($url);
+		var_dump($url['host']);
+		var_dump($url['pass']);
 		echo 'E';
 		$db->createPdo();
 		echo 'F';
