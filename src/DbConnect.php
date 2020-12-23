@@ -22,15 +22,11 @@ class DbConnect{
 	//メソッド
 	//PDOインスタンス作成および初期設定
 	public function createPdo() {
-		echo 'a1';
 		echo $this->user;
 		echo $this->dns;
 		$this->pdo = new PDO($this->dsn, $this->user, $this->dbpassword);
-		echo 'a2';
 		$this->pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);//プリペアドステートメントのエミュレーション無効
-        echo 'a3';
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);//例外がスローされる設定にする
-		echo 'a4';
 	}
 	//SELECT文でデータをfetch取得
 	//第一引数にSQL文、
