@@ -10,12 +10,13 @@ class DbConnect{
 	private $pdo;
 
 	//コンストラクタ
-	public function __construct($user, $dbpassword, $dbname, $host) {
+	public function __construct($user, $dbpassword, $dbname, $host, $driver) {
 		$this->user = $user;
 		$this->dbpassword = $dbpassword;
 		$this->dbname = $dbname;
 		$this->host = $host;
-		$this->dsn = "mysql:host={$host};dbname={$dbname};charset=utf8";
+		$this->driver = $driver;
+		$this->dsn = "{$driver}:host={$host};dbname={$dbname};charset=utf8";
 	} 
 	
 	//メソッド

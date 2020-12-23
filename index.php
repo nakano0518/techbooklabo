@@ -123,10 +123,7 @@
 		define('max_item', 12);
 		//必要なページ数を求める
 		echo 'D';
-		$db = new DbConnect(getenv("DB_USERNAME"), getenv("DB_PASSWORD"), getenv("DB_DATABASE"), getenv("DB_HOST"));
-		$url = parse_url(getenv['DATABASE_URL']);
-		var_dump($url['host']);
-		var_dump($url['pass']);
+		$db = new DbConnect(getenv("DB_USERNAME"), getenv("DB_PASSWORD"), getenv("DB_DATABASE"), getenv("DB_HOST"), getenv("DB_CONNECTION"));
 		echo 'E';
 		$db->createPdo();
 		echo 'F';
