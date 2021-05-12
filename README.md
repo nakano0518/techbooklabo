@@ -34,10 +34,6 @@
 
 ## 参考画像
 
-- ### AWS インフラ構成
-
-<img width="600" alt="techbooklabo_AWS" src="https://user-images.githubusercontent.com/54522567/77849458-a9a8be80-7206-11ea-8f1b-6b939e2a4827.jpg">
-
 - ### ER 図
 
 <img width="600" alt="techbooklabo_ER" src="https://user-images.githubusercontent.com/54522567/77849465-bcbb8e80-7206-11ea-85aa-ee6c4a163d6e.jpg">
